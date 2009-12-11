@@ -24,7 +24,7 @@ using System.Windows;
 using System.Windows.Data;
 
 
-namespace NoeticTools.NLogGUI
+namespace NoeticTools.nLogCruncher
 {
     public class BelongsToContextConverter : IValueConverter
     {

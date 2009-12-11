@@ -24,12 +24,12 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
-using NoeticTools.NLogGUI.Domain;
-using NoeticTools.NLogGUI.UI;
-using NoeticTools.NLogGUI.UI.Commands;
+using NoeticTools.nLogCruncher.Domain;
+using NoeticTools.nLogCruncher.UI;
+using NoeticTools.nLogCruncher.UI.Commands;
 
 
-namespace NoeticTools.NLogGUI
+namespace NoeticTools.nLogCruncher
 {
     public partial class MainWindow : Window, IStateListener<EventsLogChanged>, IEventListener<FormatChanged>
     {

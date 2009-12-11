@@ -21,7 +21,7 @@
 using System;
 
 
-namespace NoeticTools.NLogGUI.Domain
+namespace NoeticTools.nLogCruncher.Domain
 {
     public interface ILogEvent
     {

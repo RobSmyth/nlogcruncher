@@ -18,10 +18,10 @@
 
 #endregion
 
-using NoeticTools.NLogGUI.Domain;
+using NoeticTools.nLogCruncher.Domain;
 
 
-namespace NoeticTools.NLogGUI.UI
+namespace NoeticTools.nLogCruncher.UI
 {
     public interface IEventsFormatterData
     {

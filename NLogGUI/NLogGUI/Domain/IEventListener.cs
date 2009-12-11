@@ -18,7 +18,7 @@
 
 #endregion
 
-namespace NoeticTools.NLogGUI.Domain
+namespace NoeticTools.nLogCruncher.Domain
 {
     public interface IEventListener<T>
     {

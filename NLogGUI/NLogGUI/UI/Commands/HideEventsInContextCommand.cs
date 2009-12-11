@@ -20,10 +20,10 @@
 
 using System;
 using System.Windows.Input;
-using NoeticTools.NLogGUI.Domain;
+using NoeticTools.nLogCruncher.Domain;
 
 
-namespace NoeticTools.NLogGUI.UI.Commands
+namespace NoeticTools.nLogCruncher.UI.Commands
 {
     public class HideEventsInContextCommand : ICommand
     {

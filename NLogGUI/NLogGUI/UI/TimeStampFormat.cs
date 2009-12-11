@@ -18,7 +18,7 @@
 
 #endregion
 
-namespace NoeticTools.NLogGUI.UI
+namespace NoeticTools.nLogCruncher.UI
 {
     public enum TimeStampFormat
     {
