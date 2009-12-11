@@ -1,11 +1,11 @@
-﻿<Window x:Class="NoeticTools.NLogGUI.MainWindow"
+﻿<Window x:Class="NoeticTools.nLogCruncher.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
-    xmlns:NLogGUI="clr-namespace:NoeticTools.NLogGUI"
-    xmlns:local="clr-namespace:NoeticTools.NLogGUI.UI"
-    xmlns:Domain="clr-namespace:NoeticTools.NLogGUI.Domain"
-    Title="NLogGUI" Height="700" Width="1000" Icon="/NoeticTools.NLogGUI;component/NoeticToolsLogo.ico">
+    xmlns:NLogGUI="clr-namespace:NoeticTools.nLogCruncher"
+    xmlns:local="clr-namespace:NoeticTools.nLogCruncher.UI"
+    xmlns:Domain="clr-namespace:NoeticTools.nLogCruncher.Domain"
+    Title="NLogGUI" Height="700" Width="1000" Icon="/NoeticTools.nLogCruncher;component/NoeticToolsLogo.ico">
 
     <Window.Resources>
         <SolidColorBrush x:Key="ErrorEventBackground" Color="Crimson"/>

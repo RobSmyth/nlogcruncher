@@ -19,10 +19,10 @@
 #endregion
 
 using System.Collections.Generic;
-using NoeticTools.NLogGUI.Domain;
+using NoeticTools.nLogCruncher.Domain;
 
 
-namespace NoeticTools.NLogGUI.UI
+namespace NoeticTools.nLogCruncher.UI
 {
     public class EventsFormatterData : IEventsFormatterData
     {

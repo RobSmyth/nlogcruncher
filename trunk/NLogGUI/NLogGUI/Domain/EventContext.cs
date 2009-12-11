@@ -23,7 +23,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 
 
-namespace NoeticTools.NLogGUI.Domain
+namespace NoeticTools.nLogCruncher.Domain
 {
     public class EventContext : IEventContext, IEquatable<IEventContext>
     {

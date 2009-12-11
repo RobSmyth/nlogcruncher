@@ -21,7 +21,7 @@
 using System.Collections.Generic;
 
 
-namespace NoeticTools.NLogGUI
+namespace NoeticTools.nLogCruncher
 {
     internal class MessageQueue : IMessageQueue
     {

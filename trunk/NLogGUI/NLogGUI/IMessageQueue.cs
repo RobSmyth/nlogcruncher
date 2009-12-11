@@ -18,7 +18,7 @@
 
 #endregion
 
-namespace NoeticTools.NLogGUI
+namespace NoeticTools.nLogCruncher
 {
     public interface IMessageQueue
     {

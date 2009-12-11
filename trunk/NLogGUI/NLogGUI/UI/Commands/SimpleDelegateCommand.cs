@@ -22,7 +22,7 @@ using System;
 using System.Windows.Input;
 
 
-namespace NoeticTools.NLogGUI.UI.Commands
+namespace NoeticTools.nLogCruncher.UI.Commands
 {
     public class SimpleDelegateCommand : ICommand
     {

@@ -24,7 +24,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Threading;
 
 
-namespace NoeticTools.NLogGUI.Domain
+namespace NoeticTools.nLogCruncher.Domain
 {
     public static class EventsLog
     {

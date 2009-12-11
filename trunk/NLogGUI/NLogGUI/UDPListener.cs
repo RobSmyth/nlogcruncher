@@ -26,7 +26,7 @@ using System.Text;
 using System.Threading;
 
 
-namespace NoeticTools.NLogGUI
+namespace NoeticTools.nLogCruncher
 {
     public class UDPListener
     {
