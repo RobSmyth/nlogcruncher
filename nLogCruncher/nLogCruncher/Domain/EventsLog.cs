@@ -30,16 +30,15 @@ namespace NoeticTools.nLogCruncher.Domain
     {
         public static readonly ObservableCollection<IEventContext> Contexts = new ObservableCollection<IEventContext>();
         public static readonly ObservableCollection<IEventLevel> Levels = new ObservableCollection<IEventLevel>();
-
-        private static readonly List<IStateListener<EventsLogChanged>> listeners =
-            new List<IStateListener<EventsLogChanged>>();
-
         public static readonly ObservableCollection<ILogEvent> LogEvents = new ObservableCollection<ILogEvent>();
         private static readonly IEventContext rootContext = new EventContext("Root", null, 0);
         private static readonly TimeSpan updatePeriod = TimeSpan.FromSeconds(0.3);
         private static MessageQueue messageQueue;
         private static DispatcherTimer tickTimer;
         private static UDPListener udpListener;
+
+        private static readonly List<IStateListener<EventsLogChanged>> listeners =
+            new List<IStateListener<EventsLogChanged>>();
 
         public static void Clear()
         {

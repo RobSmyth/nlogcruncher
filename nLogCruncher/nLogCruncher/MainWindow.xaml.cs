@@ -40,10 +40,12 @@ namespace NoeticTools.nLogCruncher
         {
             data = new EventsFormatterData(this);
             TimeStampConverter = new EventTimestampConverter(data);
+            EventMessageConverter = new EventMessageConverter(data);
             SetReferenceEventCommand = new SetReferenceEventCommand(data);
             HideMessageCommand = new HideMessageCommand(data);
             HideEventsInContextCommand = new HideEventsInContextCommand(data);
             ShowAllEventsCommand = new ShowAllEventsCommand(data);
+            ShowContextDepthCommand = new ShowContextDepthCommand(data);
 
             InitializeComponent();
 
@@ -52,10 +54,12 @@ namespace NoeticTools.nLogCruncher
         }
 
         public static IValueConverter TimeStampConverter { get; private set; }
+        public static IValueConverter EventMessageConverter { get; private set; }
         public static ICommand SetReferenceEventCommand { get; private set; }
         public static ICommand HideMessageCommand { get; private set; }
         public static ICommand HideEventsInContextCommand { get; private set; }
         public static ICommand ShowAllEventsCommand { get; private set; }
+        public static ICommand ShowContextDepthCommand { get; private set; }
 
         void IEventListener<FormatChanged>.OnChange()
         {
