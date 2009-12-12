@@ -28,10 +28,12 @@ namespace NoeticTools.nLogCruncher.Domain
     public class EventContext : IEventContext, IEquatable<IEventContext>
     {
         private readonly IEventContext parent;
+        private readonly int depth;
 
-        public EventContext(string name, IEventContext parent)
+        public EventContext(string name, IEventContext parent, int depth)
         {
             this.parent = parent;
+            this.depth = depth;
             Children = new ObservableCollection<IEventContext>();
             Name = name;
         }
@@ -60,7 +62,7 @@ namespace NoeticTools.nLogCruncher.Domain
             IEventContext context;
             if (Children.Count(thisEvent => thisEvent.Name == name) == 0)
             {
-                context = new EventContext(name.Trim(), this);
+                context = new EventContext(name.Trim(), this, depth+1);
                 Children.Add(context);
             }
             else

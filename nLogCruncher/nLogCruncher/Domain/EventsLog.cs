@@ -35,7 +35,7 @@ namespace NoeticTools.nLogCruncher.Domain
             new List<IStateListener<EventsLogChanged>>();
 
         public static readonly ObservableCollection<ILogEvent> LogEvents = new ObservableCollection<ILogEvent>();
-        private static readonly IEventContext rootContext = new EventContext("Root", null);
+        private static readonly IEventContext rootContext = new EventContext("Root", null, 0);
         private static readonly TimeSpan updatePeriod = TimeSpan.FromSeconds(0.3);
         private static MessageQueue messageQueue;
         private static DispatcherTimer tickTimer;
