@@ -22,9 +22,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using NLog;
+using NoeticTools.Tests.NLogSender;
 
 
-namespace NoeticTools.Tests.NLogSender
+namespace NoeticTools.nLogCruncher.Tests.NLogSender
 {
     internal class Program
     {
@@ -36,9 +37,9 @@ namespace NoeticTools.Tests.NLogSender
                                                    "NoeticTools.Tests1.PeriodEvents",
                                                    "5 second message."),
                                  new PeriodicEvent(TimeSpan.FromSeconds(3), LogLevel.Trace,
-                                                   "NoeticTools.Tests1.PeriodEvents", "3 second message."),
+                                                   "NoeticTools.Tests2.PeriodEvents", "3 second message."),
                                  new PeriodicEvent(TimeSpan.FromSeconds(4), LogLevel.Trace,
-                                                   "NoeticTools.Tests2.PeriodEvents", "4 second message.")
+                                                   "NoeticTools.Tests2", "4 second message.")
                              };
 
             while (true)
