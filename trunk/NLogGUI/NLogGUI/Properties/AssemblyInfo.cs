@@ -27,11 +27,11 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly : AssemblyTitle("NLogGUI")]
+[assembly : AssemblyTitle("nLogCruncher")]
 [assembly : AssemblyDescription("")]
 [assembly : AssemblyConfiguration("")]
 [assembly : AssemblyCompany("")]
-[assembly : AssemblyProduct("NLogGUI")]
+[assembly : AssemblyProduct("nLogCruncher")]
 [assembly : AssemblyCopyright("Copyright ©  2009")]
 [assembly : AssemblyTrademark("")]
 [assembly : AssemblyCulture("")]

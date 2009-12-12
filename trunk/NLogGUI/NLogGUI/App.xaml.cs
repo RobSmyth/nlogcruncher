@@ -21,7 +21,7 @@
 using System.Windows;
 
 
-namespace NLogGUI
+namespace NoeticTools.nLogCruncher
 {
     /// <summary>
     /// Interaction logic for App.xaml

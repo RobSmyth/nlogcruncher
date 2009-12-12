@@ -8,8 +8,8 @@
     <ProjectGuid>{CCB1730F-4E84-4FF2-BE83-B8B5E5AE08B7}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NoeticTools.Tests.NLogSender</RootNamespace>
-    <AssemblyName>NoeticTools.NLogTestSender</AssemblyName>
+    <RootNamespace>NoeticTools.nLogCruncher.Tests.NLogSender</RootNamespace>
+    <AssemblyName>NoeticTools.nLogCruncher.TestSender</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -57,6 +57,12 @@
     <None Include="nlog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NLogGUI\nLogCruncher.csproj">
+      <Project>{297483E3-3B24-48F9-92C3-3FFA696E9379}</Project>
+      <Name>nLogCruncher</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
