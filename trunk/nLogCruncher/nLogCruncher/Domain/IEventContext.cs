@@ -28,6 +28,7 @@ namespace NoeticTools.nLogCruncher.Domain
         string Name { get; }
         ObservableCollection<IEventContext> Children { get; }
         string FullName { get; }
+        int Depth { get; }
         IEventContext GetContext(string name);
         void Clear();
     }

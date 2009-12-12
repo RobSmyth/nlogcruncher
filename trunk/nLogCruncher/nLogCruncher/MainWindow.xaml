@@ -109,7 +109,7 @@
                                            Binding="{Binding Context.FullName}" 
                                            IsReadOnly="True" MinWidth="75"/>
                         <tk:DataGridTextColumn Header="Message" Width="Auto"  
-                                           Binding="{Binding Message}" 
+                                           Binding="{Binding Path=Self, Converter={x:Static nLogCruncher:MainWindow.EventMessageConverter}}"
                                            IsReadOnly="True" MinWidth="75"/>
                     </tk:DataGrid.Columns>
                     
@@ -119,6 +119,7 @@
                             <MenuItem Header="Reference event" 
                                       Command="{x:Static nLogCruncher:MainWindow.SetReferenceEventCommand}" 
                                       CommandParameter="{Binding Path=Self}" />
+                            <Separator/>
                             <MenuItem Header="Hide events in same context" 
                                       Command="{x:Static nLogCruncher:MainWindow.HideEventsInContextCommand}" 
                                       CommandParameter="{Binding Path=Self}" />
@@ -127,8 +128,9 @@
                                       CommandParameter="{Binding Path=Self}" />
                             <Separator/>
                             <MenuItem Header="Show all" 
-                                      Command="{x:Static nLogCruncher:MainWindow.ShowAllEventsCommand}" 
-                                      CommandParameter="{Binding Path=Self}" />
+                                      Command="{x:Static nLogCruncher:MainWindow.ShowAllEventsCommand}" />
+                            <MenuItem Header="Show context depth" 
+                                      Command="{x:Static nLogCruncher:MainWindow.ShowContextDepthCommand}" />
                         </ContextMenu>
 
                     </tk:DataGrid.ContextMenu>

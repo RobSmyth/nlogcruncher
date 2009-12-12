@@ -18,6 +18,7 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 using NoeticTools.nLogCruncher.Domain;
 
@@ -28,6 +29,7 @@ namespace NoeticTools.nLogCruncher.UI
     {
         private readonly IEventListener<FormatChanged> formatChangedListener;
         private TimeStampFormat timeFormat;
+        private bool showContextDepth;
 
         public EventsFormatterData(IEventListener<FormatChanged> formatChangedListener)
         {
@@ -58,12 +60,23 @@ namespace NoeticTools.nLogCruncher.UI
         public void HideMessagesInContext(IEventContext context)
         {
             HiddenMessageContexts.Add(context, true);
+            formatChangedListener.OnChange();
         }
 
         public void ShowAllEvents()
         {
             HiddenMessages.Clear();
             HiddenMessageContexts.Clear();
+        }
+
+        public bool ShowContextDepth
+        {
+            set
+            {
+                showContextDepth = true;
+                formatChangedListener.OnChange();
+            }
+            get { return showContextDepth; }
         }
 
         public bool EventIsHidden(ILogEvent logEvent)
