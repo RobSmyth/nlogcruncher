@@ -22,7 +22,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using NLog;
-using NoeticTools.Tests.NLogSender;
 
 
 namespace NoeticTools.nLogCruncher.Tests.NLogSender

@@ -63,7 +63,7 @@ namespace NoeticTools.nLogCruncher.Domain
             IEventContext context;
             if (Children.Count(thisEvent => thisEvent.Name == name) == 0)
             {
-                context = new EventContext(name.Trim(), this, Depth+1);
+                context = new EventContext(name.Trim(), this, Depth + 1);
                 Children.Add(context);
             }
             else
