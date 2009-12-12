@@ -56,7 +56,7 @@ namespace NoeticTools.nLogCruncher.Domain
                 contextName = GetContextName();
             }
 
-            IsControlMessage = (contextName.ToLower() == "NLogGUI.Command".ToLower());
+            IsControlMessage = (contextName.ToLower() == "nLogCruncher.Command".ToLower());
 
             Context = rootContext;
             foreach (var name in contextName.Split('.'))

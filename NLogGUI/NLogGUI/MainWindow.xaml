@@ -2,10 +2,10 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
-    xmlns:NLogGUI="clr-namespace:NoeticTools.nLogCruncher"
+    xmlns:nLogCruncher="clr-namespace:NoeticTools.nLogCruncher"
     xmlns:local="clr-namespace:NoeticTools.nLogCruncher.UI"
     xmlns:Domain="clr-namespace:NoeticTools.nLogCruncher.Domain"
-    Title="NLogGUI" Height="700" Width="1000" Icon="/NoeticTools.nLogCruncher;component/NoeticToolsLogo.ico">
+    Title="nLogCruncher" Height="700" Width="1000" Icon="/NoeticTools.nLogCruncher;component/NoeticToolsLogo.ico">
 
     <Window.Resources>
         <SolidColorBrush x:Key="ErrorEventBackground" Color="Crimson"/>
@@ -80,7 +80,7 @@
                         <TreeView.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="Hide events in this context" 
-                                      Command="{x:Static NLogGUI:MainWindow.HideEventsInContextCommand}" 
+                                      Command="{x:Static nLogCruncher:MainWindow.HideEventsInContextCommand}" 
                                       CommandParameter="{Binding Path=Self}" />
                             </ContextMenu>
                         </TreeView.ContextMenu>
@@ -92,7 +92,7 @@
 
                 <tk:DataGrid Name="eventsDataGrid" 
                              AutoGenerateColumns="False" Height="Auto" Width="Auto" 
-                             ItemsSource="{x:Static NLogGUI:MainWindow.DisplayedLogEvents}" 
+                             ItemsSource="{x:Static nLogCruncher:MainWindow.DisplayedLogEvents}" 
                              xmlns:tk="http://schemas.microsoft.com/wpf/2008/toolkit" DockPanel.Dock="Right" 
                              BorderThickness="0" 
                              HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray" 
@@ -100,7 +100,7 @@
                     
                     <tk:DataGrid.Columns>
                         <tk:DataGridTextColumn Header="Time" Width="SizeToCells"  
-                                           Binding="{Binding Path=Time, Converter={x:Static NLogGUI:MainWindow.TimeStampConverter}}"
+                                           Binding="{Binding Path=Time, Converter={x:Static nLogCruncher:MainWindow.TimeStampConverter}}"
                                            IsReadOnly="True" MinWidth="50" />
                         <tk:DataGridTextColumn Header="Level" Width="SizeToCells"  
                                            Binding="{Binding Level}" 
@@ -117,17 +117,17 @@
                         
                         <ContextMenu>
                             <MenuItem Header="Reference event" 
-                                      Command="{x:Static NLogGUI:MainWindow.SetReferenceEventCommand}" 
+                                      Command="{x:Static nLogCruncher:MainWindow.SetReferenceEventCommand}" 
                                       CommandParameter="{Binding Path=Self}" />
                             <MenuItem Header="Hide events in same context" 
-                                      Command="{x:Static NLogGUI:MainWindow.HideEventsInContextCommand}" 
+                                      Command="{x:Static nLogCruncher:MainWindow.HideEventsInContextCommand}" 
                                       CommandParameter="{Binding Path=Self}" />
                             <MenuItem Header="Hide event with this message"
-                                      Command="{x:Static NLogGUI:MainWindow.HideMessageCommand}" 
+                                      Command="{x:Static nLogCruncher:MainWindow.HideMessageCommand}" 
                                       CommandParameter="{Binding Path=Self}" />
                             <Separator/>
                             <MenuItem Header="Show all" 
-                                      Command="{x:Static NLogGUI:MainWindow.ShowAllEventsCommand}" 
+                                      Command="{x:Static nLogCruncher:MainWindow.ShowAllEventsCommand}" 
                                       CommandParameter="{Binding Path=Self}" />
                         </ContextMenu>
 
