@@ -59,7 +59,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NLogGUI\nLogCruncher.csproj">
+    <ProjectReference Include="..\nLogCruncher\nLogCruncher.csproj">
       <Project>{297483E3-3B24-48F9-92C3-3FFA696E9379}</Project>
       <Name>nLogCruncher</Name>
     </ProjectReference>
