@@ -41,7 +41,7 @@ namespace NoeticTools.nLogCruncher.Domain
         private static DispatcherTimer tickTimer;
         private static UDPListener udpListener;
 
-        public static void Clear()
+        public static void ClearAll()
         {
             LogEvents.Clear();
             Levels.Clear();
@@ -88,7 +88,24 @@ namespace NoeticTools.nLogCruncher.Domain
 
                     if (logEvent.IsControlMessage)
                     {
-                        Clear();
+                        var handled = false;
+
+                        if (logEvent.Message.ToLower().Contains("events"))
+                        {
+                            handled = true;
+                            LogEvents.Clear();
+                        }
+
+                        if (logEvent.Message.ToLower().Contains("reset"))
+                        {
+                            handled = true;
+                            ClearAll();
+                        }
+
+                        if (!handled)
+                        {
+                            LogEvents.Add(logEvent);
+                        }
                     }
                     else
                     {

@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 
 // The contents of this file are subject to the Mozilla Public License
 //  Version 1.1 (the "License"); you may not use this file except in compliance
@@ -77,7 +77,7 @@ namespace NoeticTools.nLogCruncher
             namespaceTreeView.SelectedItemChanged += namespaceTreeView_SelectedItemChanged;
             DisplayedLogEvents.Filter = new Predicate<object>(EventFilter);
 
-            EventsLog.Clear();
+            EventsLog.ClearAll();
             EventsLog.Start();
             EventsLog.AddListener(this);
         }
@@ -141,7 +141,7 @@ namespace NoeticTools.nLogCruncher
 
         private static void Clear()
         {
-            EventsLog.Clear();
+            EventsLog.ClearAll();
             Refresh();
         }
 
