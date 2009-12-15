@@ -33,8 +33,9 @@
             <ColumnDefinition Width="6"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-
-        <ToolBarTray Background="White" DockPanel.Dock="Top">
+        
+<!--
+        <ToolBarTray Background="White">
             <ToolBar Band="1" BandIndex="1">
                 <Button Click="ClearButton_Click">Clear</Button>
                 <ToggleButton Click="StartStopButton_Click">
@@ -51,21 +52,19 @@
                 </ToggleButton>
             </ToolBar>
         </ToolBarTray>
+-->
+        
+        <Grid Grid.Column="0">
 
-        <DockPanel Height="Auto" Name="dockPanel2" Width="Auto" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="6" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
 
-            <ListBox Height="120" Name="levelsListBox" Width="auto" DockPanel.Dock="Bottom"
-                         ItemsSource="{x:Static Domain:EventsLog.Levels}">
-                <ListBox.ItemTemplate>
-                    <HierarchicalDataTemplate>
-                        <CheckBox Content="{Binding Name}" IsChecked="{Binding IsSelected}" Click="FilterSettingsChanged" />
-                    </HierarchicalDataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-
-            <TreeView Height="Auto" Name="namespaceTreeView" Width="auto"
+            <TreeView Name="namespaceTreeView" Grid.Row="0"
                           ItemsSource="{x:Static Domain:EventsLog.Contexts}" 
-                          DockPanel.Dock="Top" Grid.IsSharedSizeScope="True">
+                          Grid.IsSharedSizeScope="True">
 
                 <TreeView.Resources>
                     <Style TargetType="TreeViewItem">
@@ -91,9 +90,18 @@
 
             </TreeView>
 
-        </DockPanel>
+            <ListBox Name="levelsListBox" Grid.Row="2"
+                         ItemsSource="{x:Static Domain:EventsLog.Levels}">
+                <ListBox.ItemTemplate>
+                    <HierarchicalDataTemplate>
+                        <CheckBox Content="{Binding Name}" IsChecked="{Binding IsSelected}" Click="FilterSettingsChanged" />
+                    </HierarchicalDataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
-        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"></GridSplitter>
+        </Grid>
+
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
 
         <tk:DataGrid Name="eventsDataGrid" 
                              Grid.Column="2"
