@@ -38,7 +38,7 @@ namespace NoeticTools.nLogCruncher.UI.Commands
 
         public void Execute(object parameter)
         {
-            formatterData.HideMessages(((LogEvent) parameter).Message);
+            formatterData.HideMessages(((ILogEvent) parameter).Message);
         }
 
         public bool CanExecute(object parameter)

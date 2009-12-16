@@ -38,7 +38,7 @@ namespace NoeticTools.nLogCruncher.UI
             HiddenMessageContexts = new Dictionary<IEventContext, bool>();
         }
 
-        public LogEvent ReferenceLogEvent { get; set; }
+        public ILogEvent ReferenceLogEvent { get; set; }
 
         public TimeStampFormat TimeFormat
         {

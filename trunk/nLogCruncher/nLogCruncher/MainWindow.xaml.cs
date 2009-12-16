@@ -152,6 +152,14 @@ namespace NoeticTools.nLogCruncher
 
         private void StartStopButton_Click(object sender, RoutedEventArgs e)
         {
+            if (EventsLog.Running)
+            {
+                EventsLog.Stop();
+            }
+            else
+            {
+                EventsLog.Start();
+            }
         }
     }
 }

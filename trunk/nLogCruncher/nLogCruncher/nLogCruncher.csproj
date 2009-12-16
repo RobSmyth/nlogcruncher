@@ -107,6 +107,7 @@
     <Compile Include="Domain\IEventListener.cs" />
     <Compile Include="Domain\ILogEvent.cs" />
     <Compile Include="Domain\IStateListener.cs" />
+    <Compile Include="Domain\LoggerEvent.cs" />
     <Compile Include="IMessageQueue.cs" />
     <Compile Include="Domain\LogEvent.cs" />
     <Compile Include="MessageQueue.cs" />

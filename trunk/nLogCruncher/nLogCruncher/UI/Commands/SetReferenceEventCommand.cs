@@ -38,7 +38,7 @@ namespace NoeticTools.nLogCruncher.UI.Commands
 
         public void Execute(object parameter)
         {
-            formatterData.ReferenceLogEvent = (LogEvent) parameter;
+            formatterData.ReferenceLogEvent = (ILogEvent) parameter;
             formatterData.TimeFormat = TimeStampFormat.Relative;
         }
 
