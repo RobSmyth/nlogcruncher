@@ -64,7 +64,7 @@ namespace NoeticTools.nLogCruncher.Domain
             Levels.Clear();
             AddDefaultLevels();
             rootContext.Clear();
-            AddLoggerEvent("Cleared all events");
+            AddLoggerEvent("Cleared all captured events");
         }
 
         private static void AddDefaultLevels()
@@ -88,7 +88,7 @@ namespace NoeticTools.nLogCruncher.Domain
             tickTimer.Start();
 
             Running = true;
-            AddLoggerEvent("Logging started");
+            AddLoggerEvent("Log capture started");
         }
 
         public static void Stop()
@@ -96,7 +96,7 @@ namespace NoeticTools.nLogCruncher.Domain
             Running = false;
             tickTimer.Stop();
             udpListener.Stop();
-            AddLoggerEvent("Logging stopped");
+            AddLoggerEvent("Log capture stopped");
         }
 
         public static void AddListener(IStateListener<EventsLogChanged> listener)
