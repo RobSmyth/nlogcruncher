@@ -65,7 +65,7 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
-            <TreeView Name="namespaceTreeView" Grid.Row="0"
+            <TreeView Name="eventContextTreeView" Grid.Row="0"
                           ItemsSource="{x:Static Domain:EventsLog.Contexts}" 
                           Grid.IsSharedSizeScope="True">
 
@@ -81,15 +81,12 @@
                     </HierarchicalDataTemplate>
                 </TreeView.ItemTemplate>
 
-                <!--
-                        <TreeView.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Hide events in this context" 
-                                      Command="{x:Static nLogCruncher:MainWindow.HideEventsInContextCommand}" 
-                                      CommandParameter="{Binding Path=Self}" />
-                            </ContextMenu>
-                        </TreeView.ContextMenu>
-                        -->
+                <TreeView.ContextMenu>
+                    <ContextMenu Placement="MousePoint">
+                        <MenuItem Header="Hide events in this context" 
+                                      Click="HideContextTreeView_Click" />
+                    </ContextMenu>
+                </TreeView.ContextMenu>
 
             </TreeView>
 

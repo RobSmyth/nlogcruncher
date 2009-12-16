@@ -37,6 +37,7 @@ namespace NoeticTools.nLogCruncher.Domain
             Name = name;
         }
 
+        public IEventContext Self { get { return this; } }
         public string Name { get; private set; }
         public ObservableCollection<IEventContext> Children { get; private set; }
 
