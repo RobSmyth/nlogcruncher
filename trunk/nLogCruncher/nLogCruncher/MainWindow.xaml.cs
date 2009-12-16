@@ -74,7 +74,7 @@ namespace NoeticTools.nLogCruncher
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             eventsDataGrid.DataContext = DisplayedLogEvents;
-            namespaceTreeView.SelectedItemChanged += namespaceTreeView_SelectedItemChanged;
+            eventContextTreeView.SelectedItemChanged += namespaceTreeView_SelectedItemChanged;
             DisplayedLogEvents.Filter = new Predicate<object>(EventFilter);
 
             EventsLog.StartLogging();
@@ -110,7 +110,7 @@ namespace NoeticTools.nLogCruncher
 
         private bool ContextFilter(ILogEvent logEvent)
         {
-            var context = (IEventContext) namespaceTreeView.SelectedItem;
+            var context = (IEventContext) eventContextTreeView.SelectedItem;
             if (context != null)
             {
                 return logEvent.Context.FullName.StartsWith(context.FullName);
@@ -131,6 +131,10 @@ namespace NoeticTools.nLogCruncher
         private static void MainWindow_Closing(object sender, CancelEventArgs e)
         {
             EventsLog.Stop();
+        }
+
+        private void HideContextTreeView_Click(object sender, RoutedEventArgs e)
+        {
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
