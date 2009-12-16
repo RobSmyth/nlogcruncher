@@ -74,14 +74,14 @@ namespace NoeticTools.nLogCruncher
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             eventsDataGrid.DataContext = DisplayedLogEvents;
-            eventContextTreeView.SelectedItemChanged += namespaceTreeView_SelectedItemChanged;
+            eventContextTreeView.SelectedItemChanged += eventContextTreeView_SelectedItemChanged;
             DisplayedLogEvents.Filter = new Predicate<object>(EventFilter);
 
             EventsLog.StartLogging();
             EventsLog.AddListener(this);
         }
 
-        private static void namespaceTreeView_SelectedItemChanged(object sender,
+        private static void eventContextTreeView_SelectedItemChanged(object sender,
                                                                   RoutedPropertyChangedEventArgs<object> e)
         {
             Refresh();
