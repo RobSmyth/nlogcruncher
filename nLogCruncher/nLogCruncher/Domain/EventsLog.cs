@@ -64,7 +64,7 @@ namespace NoeticTools.nLogCruncher.Domain
             Levels.Clear();
             AddDefaultLevels();
             rootContext.Clear();
-            AddLoggerEvent("Cleared");
+            AddLoggerEvent("Cleared all events");
         }
 
         private static void AddDefaultLevels()
