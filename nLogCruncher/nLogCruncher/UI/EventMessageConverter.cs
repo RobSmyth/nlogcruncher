@@ -38,7 +38,7 @@ namespace NoeticTools.nLogCruncher.UI
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var logEvent = (LogEvent) value;
+            var logEvent = (ILogEvent) value;
             var message = logEvent.Message;
 
             if (formatterData.ShowContextDepth)

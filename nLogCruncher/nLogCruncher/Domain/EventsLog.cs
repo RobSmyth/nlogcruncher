@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Threading;
+using NLog;
 
 
 namespace NoeticTools.nLogCruncher.Domain
@@ -53,6 +54,8 @@ namespace NoeticTools.nLogCruncher.Domain
             rootContext.Clear();
         }
 
+        public static bool Running { get; private set; }
+
         public static void Start()
         {
             Contexts.Add(rootContext);
@@ -63,10 +66,20 @@ namespace NoeticTools.nLogCruncher.Domain
             tickTimer = new DispatcherTimer {Interval = updatePeriod};
             tickTimer.Tick += tickTimer_Tick;
             tickTimer.Start();
+
+            Running = true;
+            AddLoggerEvent("Logging started");
+        }
+
+        private static void AddLoggerEvent(string eventDescription)
+        {
+            var loggerEvent = new LoggerEvent(eventDescription, rootContext);
+            LogEvents.Add(loggerEvent);
         }
 
         public static void Stop()
         {
+            Running = false;
             tickTimer.Stop();
             udpListener.Stop();
         }

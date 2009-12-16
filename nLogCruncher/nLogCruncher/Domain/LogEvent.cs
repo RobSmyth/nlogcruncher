@@ -75,7 +75,7 @@ namespace NoeticTools.nLogCruncher.Domain
         public string Message { get; private set; }
         public IEventContext Context { get; private set; }
 
-        public LogEvent Self
+        public ILogEvent Self
         {
             get { return this; }
         }

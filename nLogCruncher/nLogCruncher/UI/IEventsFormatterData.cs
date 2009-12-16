@@ -25,7 +25,7 @@ namespace NoeticTools.nLogCruncher.UI
 {
     public interface IEventsFormatterData
     {
-        LogEvent ReferenceLogEvent { get; set; }
+        ILogEvent ReferenceLogEvent { get; set; }
         TimeStampFormat TimeFormat { get; set; }
         bool ShowContextDepth { get; set; }
         void HideMessages(string message);

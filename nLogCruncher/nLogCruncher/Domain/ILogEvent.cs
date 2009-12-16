@@ -25,9 +25,10 @@ namespace NoeticTools.nLogCruncher.Domain
 {
     public interface ILogEvent
     {
-        string Level { get; set; }
+        string Level { get; }
         DateTime Time { get; }
         string Message { get; }
         IEventContext Context { get; }
+        ILogEvent Self { get; }
     }
 }
