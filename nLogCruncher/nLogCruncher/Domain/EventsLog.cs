@@ -82,6 +82,7 @@ namespace NoeticTools.nLogCruncher.Domain
             Running = false;
             tickTimer.Stop();
             udpListener.Stop();
+            AddLoggerEvent("Logging stopped");
         }
 
         public static void AddListener(IStateListener<EventsLogChanged> listener)
