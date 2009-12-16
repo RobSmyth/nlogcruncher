@@ -33,9 +33,13 @@
             <ColumnDefinition Width="6"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        
-<!--
-        <ToolBarTray Background="White">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <ToolBarTray Background="White" Grid.Row="0">
             <ToolBar Band="1" BandIndex="1">
                 <Button Click="ClearButton_Click">Clear</Button>
                 <ToggleButton Click="StartStopButton_Click">
@@ -52,9 +56,8 @@
                 </ToggleButton>
             </ToolBar>
         </ToolBarTray>
--->
         
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="0"  Grid.Row="1">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="5*" />
@@ -101,9 +104,10 @@
 
         </Grid>
 
-        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
+        <GridSplitter  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" />
 
         <tk:DataGrid Name="eventsDataGrid" 
+                       Grid.Row="1"
                              Grid.Column="2"
                              AutoGenerateColumns="False" Height="Auto" Width="Auto" 
                              ItemsSource="{x:Static nLogCruncher:MainWindow.DisplayedLogEvents}" 
