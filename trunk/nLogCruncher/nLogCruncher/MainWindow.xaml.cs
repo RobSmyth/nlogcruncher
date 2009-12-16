@@ -77,8 +77,7 @@ namespace NoeticTools.nLogCruncher
             namespaceTreeView.SelectedItemChanged += namespaceTreeView_SelectedItemChanged;
             DisplayedLogEvents.Filter = new Predicate<object>(EventFilter);
 
-            EventsLog.ClearAll();
-            EventsLog.Start();
+            EventsLog.StartLogging();
             EventsLog.AddListener(this);
         }
 
@@ -158,7 +157,7 @@ namespace NoeticTools.nLogCruncher
             }
             else
             {
-                EventsLog.Start();
+                EventsLog.StartLogging();
             }
         }
     }
