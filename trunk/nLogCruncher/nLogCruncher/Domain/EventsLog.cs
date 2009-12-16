@@ -22,7 +22,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Threading;
-using NLog;
 
 
 namespace NoeticTools.nLogCruncher.Domain
@@ -42,6 +41,8 @@ namespace NoeticTools.nLogCruncher.Domain
         private static DispatcherTimer tickTimer;
         private static UDPListener udpListener;
 
+        public static bool Running { get; private set; }
+
         public static void ClearAll()
         {
             LogEvents.Clear();
@@ -53,8 +54,6 @@ namespace NoeticTools.nLogCruncher.Domain
             Levels.Add(new EventLevel("Trace"));
             rootContext.Clear();
         }
-
-        public static bool Running { get; private set; }
 
         public static void Start()
         {
@@ -71,12 +70,6 @@ namespace NoeticTools.nLogCruncher.Domain
             AddLoggerEvent("Logging started");
         }
 
-        private static void AddLoggerEvent(string eventDescription)
-        {
-            var loggerEvent = new LogCruncherEvent(eventDescription, rootContext);
-            LogEvents.Add(loggerEvent);
-        }
-
         public static void Stop()
         {
             Running = false;
@@ -88,6 +81,12 @@ namespace NoeticTools.nLogCruncher.Domain
         public static void AddListener(IStateListener<EventsLogChanged> listener)
         {
             listeners.Add(listener);
+        }
+
+        private static void AddLoggerEvent(string eventDescription)
+        {
+            var loggerEvent = new LogCruncherEvent(eventDescription, rootContext);
+            LogEvents.Add(loggerEvent);
         }
 
         private static void tickTimer_Tick(object sender, EventArgs e)

@@ -80,7 +80,8 @@ namespace NoeticTools.nLogCruncher.UI
 
         public bool EventIsHidden(ILogEvent logEvent)
         {
-            return (!ReferenceEquals(logEvent, ReferenceLogEvent)) && HiddenMessages.Contains(logEvent.Message) || HiddenMessageContexts.ContainsKey(logEvent.Context);
+            return (!ReferenceEquals(logEvent, ReferenceLogEvent)) && HiddenMessages.Contains(logEvent.Message) ||
+                   HiddenMessageContexts.ContainsKey(logEvent.Context);
         }
 
         private List<string> HiddenMessages { get; set; }
