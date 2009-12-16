@@ -135,6 +135,12 @@ namespace NoeticTools.nLogCruncher
 
         private void HideContextTreeView_Click(object sender, RoutedEventArgs e)
         {
+            var selectedContext = (IEventContext) eventContextTreeView.SelectedItem;
+            if (selectedContext != null)
+            {
+                data.HideMessagesInContext(selectedContext);
+                Refresh();
+            }
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
