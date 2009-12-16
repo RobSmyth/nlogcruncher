@@ -43,6 +43,16 @@ namespace NoeticTools.nLogCruncher.Domain
 
         public static bool Running { get; private set; }
 
+        private static IEventContext GetContext(string contextText)
+        {
+            var context = rootContext;
+            foreach (var name in contextText.Split('.'))
+            {
+                context = context.GetContext(name);
+            }
+            return context;
+        }
+
         public static void ClearAll()
         {
             LogEvents.Clear();
@@ -85,8 +95,9 @@ namespace NoeticTools.nLogCruncher.Domain
 
         private static void AddLoggerEvent(string eventDescription)
         {
-            var loggerEvent = new LogCruncherEvent(eventDescription, rootContext);
+            var loggerEvent = new LogCruncherEvent(eventDescription, GetContext("nLogCruncher.Events"));
             LogEvents.Add(loggerEvent);
+            OnChanged();
         }
 
         private static void tickTimer_Tick(object sender, EventArgs e)
