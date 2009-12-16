@@ -43,6 +43,11 @@ namespace NoeticTools.nLogCruncher.Domain
 
         public static bool Running { get; private set; }
 
+        static EventsLog()
+        {
+            AddDefaultLevels();
+        }
+
         private static IEventContext GetContext(string contextText)
         {
             var context = rootContext;
@@ -57,15 +62,21 @@ namespace NoeticTools.nLogCruncher.Domain
         {
             LogEvents.Clear();
             Levels.Clear();
+            AddDefaultLevels();
+            rootContext.Clear();
+            AddLoggerEvent("Cleared");
+        }
+
+        private static void AddDefaultLevels()
+        {
             Levels.Add(new EventLevel("Error"));
             Levels.Add(new EventLevel("Warn"));
             Levels.Add(new EventLevel("Info"));
             Levels.Add(new EventLevel("Debug"));
             Levels.Add(new EventLevel("Trace"));
-            rootContext.Clear();
         }
 
-        public static void Start()
+        public static void StartLogging()
         {
             Contexts.Add(rootContext);
             messageQueue = new MessageQueue();
