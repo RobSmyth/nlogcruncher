@@ -73,7 +73,7 @@ namespace NoeticTools.nLogCruncher.Domain
 
         private static void AddLoggerEvent(string eventDescription)
         {
-            var loggerEvent = new LoggerEvent(eventDescription, rootContext);
+            var loggerEvent = new LogCruncherEvent(eventDescription, rootContext);
             LogEvents.Add(loggerEvent);
         }
 
