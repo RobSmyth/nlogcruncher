@@ -68,8 +68,11 @@ namespace NoeticTools.nLogCruncher.UI
 
         public void HideMessagesInContext(IEventContext context)
         {
-            HiddenMessageContexts.Add(context, true);
-            formatChangedListener.OnChange();
+            if (!HiddenMessageContexts.ContainsKey(context))
+            {
+                HiddenMessageContexts.Add(context, true);
+                formatChangedListener.OnChange();
+            }
         }
 
         public void ShowAllEvents()
