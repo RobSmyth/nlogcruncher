@@ -28,18 +28,27 @@
 
     <Grid>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" MinHeight="21" />
+            <RowDefinition Height="auto" MinHeight="27" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="6"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-
-        <ToolBarTray Background="White" Grid.Row="0">
+        
+        <Menu Grid.Row="0" Grid.ColumnSpan="3">
+            <MenuItem Header="_Events">
+                <MenuItem Header="_Clear" Click="ClearButton_Click" />
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About..." />
+            </MenuItem>
+        </Menu>
+        <ToolBarTray Background="White" Grid.Row="1">
             <ToolBar Band="1" BandIndex="1">
                 <Button Click="ClearButton_Click">Clear</Button>
                 <ToggleButton Click="StartStopButton_Click">
@@ -57,7 +66,7 @@
             </ToolBar>
         </ToolBarTray>
         
-        <Grid Grid.Column="0"  Grid.Row="1">
+        <Grid Grid.Column="0"  Grid.Row="2">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="5*" />
@@ -101,10 +110,9 @@
 
         </Grid>
 
-        <GridSplitter  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" />
-
+        <GridSplitter  Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" />
         <tk:DataGrid Name="eventsDataGrid" 
-                       Grid.Row="1"
+                       Grid.Row="2"
                              Grid.Column="2"
                              AutoGenerateColumns="False" Height="Auto" Width="Auto" 
                              ItemsSource="{x:Static nLogCruncher:MainWindow.DisplayedLogEvents}" 
@@ -181,6 +189,5 @@
             </tk:DataGrid.Resources>
 
         </tk:DataGrid>
-
     </Grid>
 </Window>
