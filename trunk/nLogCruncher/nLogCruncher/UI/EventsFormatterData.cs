@@ -38,7 +38,7 @@ namespace NoeticTools.nLogCruncher.UI
             this.formatChangedListener = formatChangedListener;
             timeFormat = TimeStampFormat.Absolute;
             HiddenMessages = new List<string>();
-            HiddenEventsContexts = new Dictionary<IEventContext, bool>();
+            HiddenEventsInExactContexts = new Dictionary<IEventContext, bool>();
         }
 
         public ILogEvent ReferenceLogEvent { get; set; }
@@ -71,9 +71,9 @@ namespace NoeticTools.nLogCruncher.UI
 
         public void HideEventsInExactContext(IEventContext context)
         {
-            if (!HiddenEventsContexts.ContainsKey(context))
+            if (!HiddenEventsInExactContexts.ContainsKey(context))
             {
-                HiddenEventsContexts.Add(context, true);
+                HiddenEventsInExactContexts.Add(context, true);
                 hiddenContextsCache.Clear();
                 formatChangedListener.OnChange();
             }
@@ -87,7 +87,7 @@ namespace NoeticTools.nLogCruncher.UI
         public void ShowAllEvents()
         {
             HiddenMessages.Clear();
-            HiddenEventsContexts.Clear();
+            HiddenEventsInExactContexts.Clear();
             hiddenContextsCache.Clear();
         }
 
@@ -99,12 +99,12 @@ namespace NoeticTools.nLogCruncher.UI
                 return hiddenContextsCache[context];
             }
             var isHidden = (!ReferenceEquals(logEvent, ReferenceLogEvent)) && HiddenMessages.Contains(logEvent.Message) ||
-                   HiddenEventsContexts.ContainsKey(context);
+                   HiddenEventsInExactContexts.ContainsKey(context);
             hiddenContextsCache.Add(context, isHidden);
             return isHidden;
         }
 
         private List<string> HiddenMessages { get; set; }
-        private Dictionary<IEventContext, bool> HiddenEventsContexts { get; set; }
+        private Dictionary<IEventContext, bool> HiddenEventsInExactContexts { get; set; }
     }
 }
