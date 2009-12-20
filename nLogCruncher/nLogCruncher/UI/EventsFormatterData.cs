@@ -39,6 +39,7 @@ namespace NoeticTools.nLogCruncher.UI
             timeFormat = TimeStampFormat.Absolute;
             HiddenMessages = new List<string>();
             HiddenEventsInExactContexts = new Dictionary<IEventContext, bool>();
+            HiddenEventsInContexts = new Dictionary<IEventContext, bool>();
         }
 
         public ILogEvent ReferenceLogEvent { get; set; }
@@ -74,20 +75,30 @@ namespace NoeticTools.nLogCruncher.UI
             if (!HiddenEventsInExactContexts.ContainsKey(context))
             {
                 HiddenEventsInExactContexts.Add(context, true);
-                hiddenContextsCache.Clear();
-                formatChangedListener.OnChange();
+                OnFilterChanged();
             }
         }
 
-        public void HideEventsInContext(IEventLevel context)
+        private void OnFilterChanged()
         {
-            // WIP
+            hiddenContextsCache.Clear();
+            formatChangedListener.OnChange();
+        }
+
+        public void HideEventsInContext(IEventContext context)
+        {
+            if (!HiddenEventsInContexts.ContainsKey(context))
+            {
+                HiddenEventsInContexts.Add(context, true);
+                OnFilterChanged();
+            }
         }
 
         public void ShowAllEvents()
         {
             HiddenMessages.Clear();
             HiddenEventsInExactContexts.Clear();
+            HiddenEventsInContexts.Clear();
             hiddenContextsCache.Clear();
         }
 
@@ -98,13 +109,29 @@ namespace NoeticTools.nLogCruncher.UI
             {
                 return hiddenContextsCache[context];
             }
+
             var isHidden = (!ReferenceEquals(logEvent, ReferenceLogEvent)) && HiddenMessages.Contains(logEvent.Message) ||
                    HiddenEventsInExactContexts.ContainsKey(context);
+
+            if (!isHidden)
+            {
+                foreach (var hiddenEventsContextPair in HiddenEventsInContexts)
+                {
+                    if (hiddenEventsContextPair.Key.IsEqualOrParentOf(context))
+                    {
+                        isHidden = true;
+                        break;
+                    }
+                }
+            }
+
             hiddenContextsCache.Add(context, isHidden);
+
             return isHidden;
         }
 
         private List<string> HiddenMessages { get; set; }
         private Dictionary<IEventContext, bool> HiddenEventsInExactContexts { get; set; }
+        private Dictionary<IEventContext, bool> HiddenEventsInContexts { get; set; }
     }
 }

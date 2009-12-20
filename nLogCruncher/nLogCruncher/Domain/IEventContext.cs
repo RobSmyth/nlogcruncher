@@ -31,5 +31,6 @@ namespace NoeticTools.nLogCruncher.Domain
         int Depth { get; }
         IEventContext GetContext(string name);
         void Clear();
+        bool IsEqualOrParentOf(IEventContext context);
     }
 }
