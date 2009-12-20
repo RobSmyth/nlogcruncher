@@ -29,7 +29,7 @@ namespace NoeticTools.nLogCruncher.UI
         TimeStampFormat TimeFormat { get; set; }
         bool ShowContextDepth { get; set; }
         void HideMessages(string message);
-        void HideMessagesInContext(IEventContext context);
+        void HideEventsInExactContext(IEventContext context);
         void ShowAllEvents();
     }
 }

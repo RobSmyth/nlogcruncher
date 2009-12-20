@@ -18,6 +18,8 @@
 
 #endregion
 
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using NoeticTools.nLogCruncher.Domain;
 
@@ -29,13 +31,14 @@ namespace NoeticTools.nLogCruncher.UI
         private readonly IEventListener<FormatChanged> formatChangedListener;
         private bool showContextDepth;
         private TimeStampFormat timeFormat;
+        private readonly Dictionary<IEventContext, bool> hiddenContextsCache = new Dictionary<IEventContext, bool>();
 
         public EventsFormatterData(IEventListener<FormatChanged> formatChangedListener)
         {
             this.formatChangedListener = formatChangedListener;
             timeFormat = TimeStampFormat.Absolute;
             HiddenMessages = new List<string>();
-            HiddenMessageContexts = new Dictionary<IEventContext, bool>();
+            HiddenEventsContexts = new Dictionary<IEventContext, bool>();
         }
 
         public ILogEvent ReferenceLogEvent { get; set; }
@@ -66,28 +69,42 @@ namespace NoeticTools.nLogCruncher.UI
             formatChangedListener.OnChange();
         }
 
-        public void HideMessagesInContext(IEventContext context)
+        public void HideEventsInExactContext(IEventContext context)
         {
-            if (!HiddenMessageContexts.ContainsKey(context))
+            if (!HiddenEventsContexts.ContainsKey(context))
             {
-                HiddenMessageContexts.Add(context, true);
+                HiddenEventsContexts.Add(context, true);
+                hiddenContextsCache.Clear();
                 formatChangedListener.OnChange();
             }
+        }
+
+        public void HideEventsInContext(IEventLevel context)
+        {
+            // WIP
         }
 
         public void ShowAllEvents()
         {
             HiddenMessages.Clear();
-            HiddenMessageContexts.Clear();
+            HiddenEventsContexts.Clear();
+            hiddenContextsCache.Clear();
         }
 
         public bool EventIsHidden(ILogEvent logEvent)
         {
-            return (!ReferenceEquals(logEvent, ReferenceLogEvent)) && HiddenMessages.Contains(logEvent.Message) ||
-                   HiddenMessageContexts.ContainsKey(logEvent.Context);
+            var context = logEvent.Context;
+            if (hiddenContextsCache.ContainsKey(context))
+            {
+                return hiddenContextsCache[context];
+            }
+            var isHidden = (!ReferenceEquals(logEvent, ReferenceLogEvent)) && HiddenMessages.Contains(logEvent.Message) ||
+                   HiddenEventsContexts.ContainsKey(context);
+            hiddenContextsCache.Add(context, isHidden);
+            return isHidden;
         }
 
         private List<string> HiddenMessages { get; set; }
-        private Dictionary<IEventContext, bool> HiddenMessageContexts { get; set; }
+        private Dictionary<IEventContext, bool> HiddenEventsContexts { get; set; }
     }
 }
