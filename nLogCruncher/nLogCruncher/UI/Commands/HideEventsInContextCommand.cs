@@ -37,7 +37,7 @@ namespace NoeticTools.nLogCruncher.UI.Commands
         public void Execute(object parameter)
         {
             Console.WriteLine("Type is {0}", parameter.GetType()); //>>>
-            data.HideMessagesInContext(((ILogEvent) parameter).Context);
+            data.HideEventsInExactContext(((ILogEvent) parameter).Context);
         }
 
         public bool CanExecute(object parameter)

@@ -59,5 +59,12 @@ namespace NoeticTools.nLogCruncher.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.Drawing.Bitmap NoeticToolsLogo {
+            get {
+                object obj = ResourceManager.GetObject("NoeticToolsLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
