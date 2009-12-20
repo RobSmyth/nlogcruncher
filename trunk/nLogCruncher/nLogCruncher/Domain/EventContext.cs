@@ -80,6 +80,11 @@ namespace NoeticTools.nLogCruncher.Domain
             Children.Clear();
         }
 
+        public bool IsEqualOrParentOf(IEventContext context)
+        {
+            return context.FullName.StartsWith(FullName);
+        }
+
         public override int GetHashCode()
         {
             return FullName.GetHashCode();

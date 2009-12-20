@@ -31,5 +31,6 @@ namespace NoeticTools.nLogCruncher.UI
         void HideMessages(string message);
         void HideEventsInExactContext(IEventContext context);
         void ShowAllEvents();
+        void HideEventsInContext(IEventContext context);
     }
 }

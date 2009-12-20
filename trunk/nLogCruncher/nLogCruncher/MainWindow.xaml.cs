@@ -139,6 +139,16 @@ namespace NoeticTools.nLogCruncher
             var selectedContext = (IEventContext) eventContextTreeView.SelectedItem;
             if (selectedContext != null)
             {
+                data.HideEventsInContext(selectedContext);
+                Refresh();
+            }
+        }
+
+        private void HideExactContextTreeView_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedContext = (IEventContext)eventContextTreeView.SelectedItem;
+            if (selectedContext != null)
+            {
                 data.HideEventsInExactContext(selectedContext);
                 Refresh();
             }
