@@ -31,7 +31,6 @@ namespace NoeticTools.nLogCruncher.UI
         private bool showContextDepth;
         private TimeStampFormat timeFormat;
         private List<string> HiddenMessages { get; set; }
-        private Dictionary<IEventContext, bool> HiddenEventsInExactContexts { get; set; }
         private Dictionary<IEventContext, bool> HiddenEventsInContexts { get; set; }
 
         public EventsFormatterData(IEventListener<FormatChanged> formatChangedListener)
@@ -39,7 +38,6 @@ namespace NoeticTools.nLogCruncher.UI
             this.formatChangedListener = formatChangedListener;
             timeFormat = TimeStampFormat.Absolute;
             HiddenMessages = new List<string>();
-            HiddenEventsInExactContexts = new Dictionary<IEventContext, bool>();
             HiddenEventsInContexts = new Dictionary<IEventContext, bool>();
         }
 
@@ -73,12 +71,8 @@ namespace NoeticTools.nLogCruncher.UI
 
         public void HideEventsInExactContext(IEventContext context)
         {
-            if (!HiddenEventsInExactContexts.ContainsKey(context))
-            {
-                HiddenEventsInExactContexts.Add(context, true);
-                context.ShowEvents = ShowEvents.HideExact;
-                OnFilterChanged();
-            }
+            OnFilterChanged();
+            context.ShowEvents = ShowEvents.HideExact;
         }
 
         public void HideEventsInContext(IEventContext context)
@@ -94,7 +88,6 @@ namespace NoeticTools.nLogCruncher.UI
         public void ShowAllEvents()
         {
             HiddenMessages.Clear();
-            HiddenEventsInExactContexts.Clear();
             HiddenEventsInContexts.Clear();
             ClearCache();
         }
@@ -117,8 +110,7 @@ namespace NoeticTools.nLogCruncher.UI
                 return context.ShowEvents == ShowEvents.Yes ? false : true;
             }
 
-            var isHidden = (!ReferenceEquals(logEvent, ReferenceLogEvent)) && HiddenMessages.Contains(logEvent.Message) ||
-                           HiddenEventsInExactContexts.ContainsKey(context);
+            var isHidden = (!ReferenceEquals(logEvent, ReferenceLogEvent)) && HiddenMessages.Contains(logEvent.Message);
 
             if (!isHidden)
             {
