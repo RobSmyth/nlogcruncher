@@ -76,7 +76,7 @@ namespace NoeticTools.nLogCruncher.UI
             if (!HiddenEventsInExactContexts.ContainsKey(context))
             {
                 HiddenEventsInExactContexts.Add(context, true);
-                context.ShowEvents = ShowEvents.No;
+                context.ShowEvents = ShowEvents.HideExact;
                 OnFilterChanged();
             }
         }
@@ -86,7 +86,7 @@ namespace NoeticTools.nLogCruncher.UI
             if (!HiddenEventsInContexts.ContainsKey(context))
             {
                 HiddenEventsInContexts.Add(context, true);
-                context.ShowEvents = ShowEvents.No;
+                context.ShowEvents = ShowEvents.HideThisAndChildren;
                 OnFilterChanged();
             }
         }
@@ -127,13 +127,16 @@ namespace NoeticTools.nLogCruncher.UI
                     if (hiddenEventsContextPair.Key.IsEqualOrParentOf(context))
                     {
                         isHidden = true;
+                        context.ShowEvents = ShowEvents.HideThisAndChildren;
                         break;
                     }
                 }
             }
 
-            hiddenContextsCache.Add(context, true);
-            context.ShowEvents = isHidden ? ShowEvents.No : ShowEvents.Yes;
+            if (!hiddenContextsCache.ContainsKey(context))
+            {
+                hiddenContextsCache.Add(context, true);
+            }
 
             return isHidden;
         }
