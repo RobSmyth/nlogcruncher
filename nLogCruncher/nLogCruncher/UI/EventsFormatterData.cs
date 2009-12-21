@@ -74,6 +74,7 @@ namespace NoeticTools.nLogCruncher.UI
         {
             OnFilterChanged();
             context.ShowEvents = ShowEvents.HideExact;
+            cachedContexts.Add(context);
         }
 
         public void HideEventsInContext(IEventContext context)
@@ -83,6 +84,7 @@ namespace NoeticTools.nLogCruncher.UI
                 HiddenEventsInContexts.Add(context, true);
                 OnFilterChanged();
                 context.ShowEvents = ShowEvents.HideThisAndChildren;
+                cachedContexts.Add(context);
             }
         }
 
@@ -119,9 +121,9 @@ namespace NoeticTools.nLogCruncher.UI
 
             if (!isHidden)
             {
-                foreach (var hiddenEventsContextPair in HiddenEventsInContexts)
+                foreach (var eventContext in cachedContexts)
                 {
-                    if (hiddenEventsContextPair.Key.ShowEvents == ShowEvents.HideThisAndChildren)
+                    if (eventContext.ShowEvents == ShowEvents.HideThisAndChildren)
                     {
                         isHidden = true;
                         context.ShowEvents = ShowEvents.HideThisAndChildren;
