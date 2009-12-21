@@ -3,7 +3,8 @@ namespace NoeticTools.nLogCruncher.UI
     public enum ShowEvents
     {
         Unknown,
-        No,
+        HideExact,
+        HideThisAndChildren,
         Yes
     }
 }
