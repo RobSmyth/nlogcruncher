@@ -31,7 +31,6 @@ namespace NoeticTools.nLogCruncher.UI
         private bool showContextDepth;
         private TimeStampFormat timeFormat;
         private List<string> HiddenMessages { get; set; }
-        private Dictionary<IEventContext, bool> HiddenEventsInContexts { get; set; }
         private readonly List<IEventContext> cachedContexts = new List<IEventContext>();
 
         public EventsFormatterData(IEventListener<FormatChanged> formatChangedListener)
@@ -39,7 +38,6 @@ namespace NoeticTools.nLogCruncher.UI
             this.formatChangedListener = formatChangedListener;
             timeFormat = TimeStampFormat.Absolute;
             HiddenMessages = new List<string>();
-            HiddenEventsInContexts = new Dictionary<IEventContext, bool>();
         }
 
         public ILogEvent ReferenceLogEvent { get; set; }
@@ -79,19 +77,14 @@ namespace NoeticTools.nLogCruncher.UI
 
         public void HideEventsInContext(IEventContext context)
         {
-            if (!HiddenEventsInContexts.ContainsKey(context))
-            {
-                HiddenEventsInContexts.Add(context, true);
-                OnFilterChanged();
-                context.ShowEvents = ShowEvents.HideThisAndChildren;
-                cachedContexts.Add(context);
-            }
+            OnFilterChanged();
+            context.ShowEvents = ShowEvents.HideThisAndChildren;
+            cachedContexts.Add(context);
         }
 
         public void ShowAllEvents()
         {
             HiddenMessages.Clear();
-            HiddenEventsInContexts.Clear();
             ClearCache();
         }
 
