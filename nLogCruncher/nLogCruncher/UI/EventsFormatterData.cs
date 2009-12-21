@@ -18,8 +18,6 @@
 
 #endregion
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using NoeticTools.nLogCruncher.Domain;
 
@@ -29,9 +27,12 @@ namespace NoeticTools.nLogCruncher.UI
     public class EventsFormatterData : IEventsFormatterData
     {
         private readonly IEventListener<FormatChanged> formatChangedListener;
+        private readonly Dictionary<IEventContext, bool> hiddenContextsCache = new Dictionary<IEventContext, bool>();
         private bool showContextDepth;
         private TimeStampFormat timeFormat;
-        private readonly Dictionary<IEventContext, bool> hiddenContextsCache = new Dictionary<IEventContext, bool>();
+        private List<string> HiddenMessages { get; set; }
+        private Dictionary<IEventContext, bool> HiddenEventsInExactContexts { get; set; }
+        private Dictionary<IEventContext, bool> HiddenEventsInContexts { get; set; }
 
         public EventsFormatterData(IEventListener<FormatChanged> formatChangedListener)
         {
@@ -79,12 +80,6 @@ namespace NoeticTools.nLogCruncher.UI
             }
         }
 
-        private void OnFilterChanged()
-        {
-            hiddenContextsCache.Clear();
-            formatChangedListener.OnChange();
-        }
-
         public void HideEventsInContext(IEventContext context)
         {
             if (!HiddenEventsInContexts.ContainsKey(context))
@@ -111,7 +106,7 @@ namespace NoeticTools.nLogCruncher.UI
             }
 
             var isHidden = (!ReferenceEquals(logEvent, ReferenceLogEvent)) && HiddenMessages.Contains(logEvent.Message) ||
-                   HiddenEventsInExactContexts.ContainsKey(context);
+                           HiddenEventsInExactContexts.ContainsKey(context);
 
             if (!isHidden)
             {
@@ -130,8 +125,10 @@ namespace NoeticTools.nLogCruncher.UI
             return isHidden;
         }
 
-        private List<string> HiddenMessages { get; set; }
-        private Dictionary<IEventContext, bool> HiddenEventsInExactContexts { get; set; }
-        private Dictionary<IEventContext, bool> HiddenEventsInContexts { get; set; }
+        private void OnFilterChanged()
+        {
+            hiddenContextsCache.Clear();
+            formatChangedListener.OnChange();
+        }
     }
 }

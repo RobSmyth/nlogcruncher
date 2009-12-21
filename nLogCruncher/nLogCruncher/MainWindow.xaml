@@ -93,10 +93,8 @@
                 <TreeView.ContextMenu>
                     <ContextMenu Placement="MousePoint">
                         <MenuItem Header="Hide events" >
-                            <MenuItem Header="In this context" CommandParameter="Exact"
-                                      Click="HideExactContextTreeView_Click" />
-                            <MenuItem Header="In this and child contexts" CommandParameter="StartsWith"
-                                      Click="HideContextTreeView_Click" />
+                            <MenuItem Header="In this context" Click="HideExactContextTreeView_Click" />
+                            <MenuItem Header="In this and child contexts" Click="HideContextTreeView_Click" />
                         </MenuItem>
                     </ContextMenu>
                 </TreeView.ContextMenu>
