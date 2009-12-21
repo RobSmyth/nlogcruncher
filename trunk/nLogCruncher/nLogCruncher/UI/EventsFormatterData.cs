@@ -130,6 +130,7 @@ namespace NoeticTools.nLogCruncher.UI
             }
 
             hiddenContextsCache.Add(context, isHidden);
+            context.ShowEvents = isHidden ? ShowEvents.No : ShowEvents.Yes;
 
             return isHidden;
         }
@@ -143,6 +144,8 @@ namespace NoeticTools.nLogCruncher.UI
 
     public enum ShowEvents
     {
-        Unknown
+        Unknown,
+        No,
+        Yes
     }
 }
