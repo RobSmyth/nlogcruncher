@@ -80,8 +80,8 @@ namespace NoeticTools.nLogCruncher.UI
             if (!HiddenEventsInContexts.ContainsKey(context))
             {
                 HiddenEventsInContexts.Add(context, true);
-                context.ShowEvents = ShowEvents.HideThisAndChildren;
                 OnFilterChanged();
+                context.ShowEvents = ShowEvents.HideThisAndChildren;
             }
         }
 
@@ -135,7 +135,6 @@ namespace NoeticTools.nLogCruncher.UI
 
         private void OnFilterChanged()
         {
-            ClearCache();
             formatChangedListener.OnChange();
         }
     }
