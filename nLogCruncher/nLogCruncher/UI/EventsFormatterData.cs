@@ -95,6 +95,10 @@ namespace NoeticTools.nLogCruncher.UI
 
         private void ClearCache()
         {
+            foreach (var context in cachedContexts)
+            {
+                context.ShowEvents = ShowEvents.Unknown;
+            }
             foreach (var context in hiddenContextsCache)
             {
                 context.ShowEvents = ShowEvents.Unknown;
