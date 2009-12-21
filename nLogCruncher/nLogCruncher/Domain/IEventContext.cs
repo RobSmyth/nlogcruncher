@@ -19,6 +19,7 @@
 #endregion
 
 using System.Collections.ObjectModel;
+using NoeticTools.nLogCruncher.UI;
 
 
 namespace NoeticTools.nLogCruncher.Domain
@@ -29,6 +30,7 @@ namespace NoeticTools.nLogCruncher.Domain
         ObservableCollection<IEventContext> Children { get; }
         string FullName { get; }
         int Depth { get; }
+        ShowEvents ShowEvents { get; set; }
         IEventContext GetContext(string name);
         void Clear();
         bool IsEqualOrParentOf(IEventContext context);

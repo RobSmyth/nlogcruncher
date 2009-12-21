@@ -21,7 +21,6 @@
 using System;
 using System.ComponentModel;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -83,7 +82,7 @@ namespace NoeticTools.nLogCruncher
         }
 
         private static void eventContextTreeView_SelectedItemChanged(object sender,
-                                                                  RoutedPropertyChangedEventArgs<object> e)
+                                                                     RoutedPropertyChangedEventArgs<object> e)
         {
             Refresh();
         }
@@ -146,7 +145,7 @@ namespace NoeticTools.nLogCruncher
 
         private void HideExactContextTreeView_Click(object sender, RoutedEventArgs e)
         {
-            var selectedContext = (IEventContext)eventContextTreeView.SelectedItem;
+            var selectedContext = (IEventContext) eventContextTreeView.SelectedItem;
             if (selectedContext != null)
             {
                 data.HideEventsInExactContext(selectedContext);

@@ -94,6 +94,15 @@ namespace NoeticTools.nLogCruncher.UI
             HiddenMessages.Clear();
             HiddenEventsInExactContexts.Clear();
             HiddenEventsInContexts.Clear();
+            ClearCache();
+        }
+
+        private void ClearCache()
+        {
+            foreach (var contextsCachePair in hiddenContextsCache)
+            {
+                contextsCachePair.Key.ShowEvents = ShowEvents.Unknown;
+            }
             hiddenContextsCache.Clear();
         }
 
@@ -130,5 +139,10 @@ namespace NoeticTools.nLogCruncher.UI
             hiddenContextsCache.Clear();
             formatChangedListener.OnChange();
         }
+    }
+
+    public enum ShowEvents
+    {
+        Unknown
     }
 }
