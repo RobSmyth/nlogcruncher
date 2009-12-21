@@ -76,6 +76,7 @@ namespace NoeticTools.nLogCruncher.UI
             if (!HiddenEventsInExactContexts.ContainsKey(context))
             {
                 HiddenEventsInExactContexts.Add(context, true);
+                context.ShowEvents = ShowEvents.No;
                 OnFilterChanged();
             }
         }
@@ -85,6 +86,7 @@ namespace NoeticTools.nLogCruncher.UI
             if (!HiddenEventsInContexts.ContainsKey(context))
             {
                 HiddenEventsInContexts.Add(context, true);
+                context.ShowEvents = ShowEvents.No;
                 OnFilterChanged();
             }
         }
@@ -109,9 +111,10 @@ namespace NoeticTools.nLogCruncher.UI
         public bool EventIsHidden(ILogEvent logEvent)
         {
             var context = logEvent.Context;
-            if (hiddenContextsCache.ContainsKey(context))
+
+            if (context.ShowEvents != ShowEvents.Unknown)
             {
-                return hiddenContextsCache[context];
+                return context.ShowEvents == ShowEvents.Yes ? false : true;
             }
 
             var isHidden = (!ReferenceEquals(logEvent, ReferenceLogEvent)) && HiddenMessages.Contains(logEvent.Message) ||
@@ -129,7 +132,7 @@ namespace NoeticTools.nLogCruncher.UI
                 }
             }
 
-            hiddenContextsCache.Add(context, isHidden);
+            hiddenContextsCache.Add(context, true);
             context.ShowEvents = isHidden ? ShowEvents.No : ShowEvents.Yes;
 
             return isHidden;
@@ -137,15 +140,8 @@ namespace NoeticTools.nLogCruncher.UI
 
         private void OnFilterChanged()
         {
-            hiddenContextsCache.Clear();
+            ClearCache();
             formatChangedListener.OnChange();
         }
-    }
-
-    public enum ShowEvents
-    {
-        Unknown,
-        No,
-        Yes
     }
 }

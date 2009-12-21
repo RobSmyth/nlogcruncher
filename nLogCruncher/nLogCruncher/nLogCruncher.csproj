@@ -137,6 +137,7 @@
     <Compile Include="UI\Commands\SetReferenceEventCommand.cs" />
     <Compile Include="UI\Commands\ShowAllEventsCommand.cs" />
     <Compile Include="UI\Commands\SimpleDelegateCommand.cs" />
+    <Compile Include="UI\ShowEvents.cs" />
     <Compile Include="UI\TimeStampFormat.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
