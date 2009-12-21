@@ -21,6 +21,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using NoeticTools.nLogCruncher.UI;
 
 
 namespace NoeticTools.nLogCruncher.Domain
@@ -35,6 +36,7 @@ namespace NoeticTools.nLogCruncher.Domain
             Depth = depth;
             Children = new ObservableCollection<IEventContext>();
             Name = name;
+            ShowEvents = ShowEvents.Unknown;
         }
 
         public IEventContext Self { get { return this; } }
@@ -51,6 +53,7 @@ namespace NoeticTools.nLogCruncher.Domain
         }
 
         public int Depth { get; private set; }
+        public ShowEvents ShowEvents { get; set; }
 
         public IEventContext GetContext(string name)
         {
