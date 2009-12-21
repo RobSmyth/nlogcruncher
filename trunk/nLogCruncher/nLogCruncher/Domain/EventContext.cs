@@ -39,7 +39,11 @@ namespace NoeticTools.nLogCruncher.Domain
             ShowEvents = ShowEvents.Unknown;
         }
 
-        public IEventContext Self { get { return this; } }
+        public IEventContext Self
+        {
+            get { return this; }
+        }
+
         public string Name { get; private set; }
         public ObservableCollection<IEventContext> Children { get; private set; }
 
