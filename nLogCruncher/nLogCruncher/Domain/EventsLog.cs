@@ -41,22 +41,12 @@ namespace NoeticTools.nLogCruncher.Domain
         private static DispatcherTimer tickTimer;
         private static UDPListener udpListener;
 
-        public static bool Running { get; private set; }
-
         static EventsLog()
         {
             AddDefaultLevels();
         }
 
-        private static IEventContext GetContext(string contextText)
-        {
-            var context = rootContext;
-            foreach (var name in contextText.Split('.'))
-            {
-                context = context.GetContext(name);
-            }
-            return context;
-        }
+        public static bool Running { get; private set; }
 
         public static void ClearAll()
         {
@@ -65,15 +55,6 @@ namespace NoeticTools.nLogCruncher.Domain
             AddDefaultLevels();
             rootContext.Clear();
             AddLoggerEvent("Cleared all captured events");
-        }
-
-        private static void AddDefaultLevels()
-        {
-            Levels.Add(new EventLevel("Error"));
-            Levels.Add(new EventLevel("Warn"));
-            Levels.Add(new EventLevel("Info"));
-            Levels.Add(new EventLevel("Debug"));
-            Levels.Add(new EventLevel("Trace"));
         }
 
         public static void StartLogging()
@@ -102,6 +83,25 @@ namespace NoeticTools.nLogCruncher.Domain
         public static void AddListener(IStateListener<EventsLogChanged> listener)
         {
             listeners.Add(listener);
+        }
+
+        private static IEventContext GetContext(string contextText)
+        {
+            var context = rootContext;
+            foreach (var name in contextText.Split('.'))
+            {
+                context = context.GetContext(name);
+            }
+            return context;
+        }
+
+        private static void AddDefaultLevels()
+        {
+            Levels.Add(new EventLevel("Error"));
+            Levels.Add(new EventLevel("Warn"));
+            Levels.Add(new EventLevel("Info"));
+            Levels.Add(new EventLevel("Debug"));
+            Levels.Add(new EventLevel("Trace"));
         }
 
         private static void AddLoggerEvent(string eventDescription)

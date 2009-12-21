@@ -26,12 +26,12 @@ namespace NoeticTools.nLogCruncher.UI
 {
     public class EventsFormatterData : IEventsFormatterData
     {
+        private readonly List<IEventContext> cachedContexts = new List<IEventContext>();
         private readonly IEventListener<FormatChanged> formatChangedListener;
         private readonly List<IEventContext> hiddenContextsCache = new List<IEventContext>();
         private bool showContextDepth;
         private TimeStampFormat timeFormat;
         private List<string> HiddenMessages { get; set; }
-        private readonly List<IEventContext> cachedContexts = new List<IEventContext>();
 
         public EventsFormatterData(IEventListener<FormatChanged> formatChangedListener)
         {
@@ -88,19 +88,6 @@ namespace NoeticTools.nLogCruncher.UI
             ClearCache();
         }
 
-        private void ClearCache()
-        {
-            foreach (var context in cachedContexts)
-            {
-                context.ShowEvents = ShowEvents.Unknown;
-            }
-            foreach (var context in hiddenContextsCache)
-            {
-                context.ShowEvents = ShowEvents.Unknown;
-            }
-            hiddenContextsCache.Clear();
-        }
-
         public bool EventIsHidden(ILogEvent logEvent)
         {
             var context = logEvent.Context;
@@ -136,6 +123,19 @@ namespace NoeticTools.nLogCruncher.UI
             }
 
             return isHidden;
+        }
+
+        private void ClearCache()
+        {
+            foreach (var context in cachedContexts)
+            {
+                context.ShowEvents = ShowEvents.Unknown;
+            }
+            foreach (var context in hiddenContextsCache)
+            {
+                context.ShowEvents = ShowEvents.Unknown;
+            }
+            hiddenContextsCache.Clear();
         }
 
         private void OnFilterChanged()
