@@ -105,21 +105,27 @@ namespace NoeticTools.nLogCruncher.UI
                 {
                     if (eventContext.ShowEvents == ShowEvents.HideThisAndChildren)
                     {
-                        isHidden = true;
-                        context.ShowEvents = ShowEvents.HideThisAndChildren;
-                        break;
+                        if (eventContext.IsEqualOrParentOf(context))
+                        {
+                            isHidden = true;
+                            context.ShowEvents = ShowEvents.HideThisAndChildren;
+                            break;
+                        }
                     }
                 }
             }
 
-            if (!cachedContexts.Contains(context))
+            if (context.ShowEvents != ShowEvents.Yes)
             {
-                cachedContexts.Add(context);
-            }
+                if (!cachedContexts.Contains(context))
+                {
+                    cachedContexts.Add(context);
+                }
 
-            if (!hiddenContextsCache.Contains(context))
-            {
-                hiddenContextsCache.Add(context);
+                if (!hiddenContextsCache.Contains(context))
+                {
+                    hiddenContextsCache.Add(context);
+                }
             }
 
             return isHidden;
