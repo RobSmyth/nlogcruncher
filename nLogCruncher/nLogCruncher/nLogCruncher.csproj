@@ -128,7 +128,7 @@
     </Compile>
     <Compile Include="UDPListener.cs" />
     <Compile Include="UI\Commands\ShowContextDepthCommand.cs" />
-    <Compile Include="UI\EventGroupConverter.cs" />
+    <Compile Include="UI\EventSetConverter.cs" />
     <Compile Include="UI\EventMessageConverter.cs" />
     <Compile Include="UI\EventsFormatterData.cs" />
     <Compile Include="UI\EventTimestampConverter.cs" />

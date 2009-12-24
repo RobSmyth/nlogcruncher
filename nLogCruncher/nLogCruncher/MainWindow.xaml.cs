@@ -39,7 +39,7 @@ namespace NoeticTools.nLogCruncher
         public MainWindow()
         {
             data = new EventsFormatterData(this);
-            EventGroupConverter = new EventGroupConverter(data);
+            EventGroupConverter = new EventSetConverter(data);
             TimeStampConverter = new EventTimestampConverter(data);
             EventMessageConverter = new EventMessageConverter(data);
             SetReferenceEventCommand = new SetReferenceEventCommand(data);
