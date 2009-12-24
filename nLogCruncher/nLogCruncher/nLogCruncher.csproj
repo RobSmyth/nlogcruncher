@@ -127,13 +127,14 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="UDPListener.cs" />
+    <Compile Include="UI\Commands\AddEventsWithMessageToSetCommand.cs" />
     <Compile Include="UI\Commands\ShowContextDepthCommand.cs" />
     <Compile Include="UI\EventSetConverter.cs" />
     <Compile Include="UI\EventMessageConverter.cs" />
     <Compile Include="UI\EventsFormatterData.cs" />
     <Compile Include="UI\EventTimestampConverter.cs" />
     <Compile Include="UI\Commands\HideEventsInContextCommand.cs" />
-    <Compile Include="UI\Commands\HideMessageCommand.cs" />
+    <Compile Include="UI\Commands\HideEventsWithMessageCommand.cs" />
     <Compile Include="UI\IEventsFormatterData.cs" />
     <Compile Include="UI\Commands\SetReferenceEventCommand.cs" />
     <Compile Include="UI\Commands\ShowAllEventsCommand.cs" />

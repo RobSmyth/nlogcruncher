@@ -25,11 +25,11 @@ using NoeticTools.nLogCruncher.Domain;
 
 namespace NoeticTools.nLogCruncher.UI.Commands
 {
-    public class HideMessageCommand : ICommand
+    public class HideEventsWithMessageCommand : ICommand
     {
         private readonly IEventsFormatterData formatterData;
 
-        public HideMessageCommand(IEventsFormatterData formatterData)
+        public HideEventsWithMessageCommand(IEventsFormatterData formatterData)
         {
             this.formatterData = formatterData;
         }

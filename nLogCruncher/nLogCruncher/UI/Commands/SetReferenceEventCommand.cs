@@ -34,8 +34,6 @@ namespace NoeticTools.nLogCruncher.UI.Commands
             this.formatterData = formatterData;
         }
 
-        public ICommand Test { get; set; }
-
         public void Execute(object parameter)
         {
             formatterData.ReferenceLogEvent = (ILogEvent) parameter;
