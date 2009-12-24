@@ -125,6 +125,9 @@
                              AlternationCount="0">
 
             <tk:DataGrid.Columns>
+                <tk:DataGridTextColumn Header="" Width="SizeToCells"  
+                                           Binding="{Binding Path=Self, Converter={x:Static nLogCruncher:MainWindow.EventGroupConverter}}"
+                                           IsReadOnly="True" MinWidth="10" />
                 <tk:DataGridTextColumn Header="Time" Width="SizeToCells"  
                                            Binding="{Binding Path=Time, Converter={x:Static nLogCruncher:MainWindow.TimeStampConverter}}"
                                            IsReadOnly="True" MinWidth="50" />
