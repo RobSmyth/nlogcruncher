@@ -42,8 +42,10 @@ namespace NoeticTools.nLogCruncher
             EventGroupConverter = new EventSetConverter(data);
             TimeStampConverter = new EventTimestampConverter(data);
             EventMessageConverter = new EventMessageConverter(data);
+
+            AddEventsWithMessageToSetCommand = new AddEventsWithMessageToSetCommand(data);
             SetReferenceEventCommand = new SetReferenceEventCommand(data);
-            HideMessageCommand = new HideMessageCommand(data);
+            HideEventsWithMessageCommand = new HideEventsWithMessageCommand(data);
             HideEventsInContextCommand = new HideEventsInContextCommand(data);
             ShowAllEventsCommand = new ShowAllEventsCommand(data);
             ShowContextDepthCommand = new ShowContextDepthCommand(data);
@@ -57,8 +59,10 @@ namespace NoeticTools.nLogCruncher
         public static IValueConverter EventGroupConverter { get; private set; }
         public static IValueConverter TimeStampConverter { get; private set; }
         public static IValueConverter EventMessageConverter { get; private set; }
+
+        public static ICommand AddEventsWithMessageToSetCommand { get; private set; }
         public static ICommand SetReferenceEventCommand { get; private set; }
-        public static ICommand HideMessageCommand { get; private set; }
+        public static ICommand HideEventsWithMessageCommand { get; private set; }
         public static ICommand HideEventsInContextCommand { get; private set; }
         public static ICommand ShowAllEventsCommand { get; private set; }
         public static ICommand ShowContextDepthCommand { get; private set; }
