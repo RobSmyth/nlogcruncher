@@ -5,11 +5,11 @@ using System.Windows.Data;
 
 namespace NoeticTools.nLogCruncher.UI
 {
-    public class EventGroupConverter : IValueConverter
+    public class EventSetConverter : IValueConverter
     {
         private readonly IEventsFormatterData formatterData;
 
-        public EventGroupConverter(IEventsFormatterData formatterData)
+        public EventSetConverter(IEventsFormatterData formatterData)
         {
             this.formatterData = formatterData;
         }
