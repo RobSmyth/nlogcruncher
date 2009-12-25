@@ -33,15 +33,20 @@
                                       CommandParameter="{Binding Path=Self}" />
 
             <Separator/>
-<!--
+            
+            <MenuItem Header="Add to set"
+                                      Command="{x:Static nLogCruncher:MainWindow.AddEventToSetCommand}" 
+                                      CommandParameter="{Binding Path=Self}" />
+            <!--
             <MenuItem Header="Add events with this message to set"
                                       Command="{x:Static nLogCruncher:MainWindow.AddEventsWithMessageToSetCommand}" 
                                       CommandParameter="{Binding Path=Self}" />
             
             <MenuItem Header="Remove from set" IsEnabled="False"/>
+            -->
 
             <Separator/>
-            -->
+            
             <MenuItem Header="Show all" 
                                       Command="{x:Static nLogCruncher:MainWindow.ShowAllEventsCommand}" />
             <MenuItem Header="Show context depth" 

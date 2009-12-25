@@ -27,6 +27,7 @@ using System.Windows.Input;
 using NoeticTools.nLogCruncher.Domain;
 using NoeticTools.nLogCruncher.UI;
 using NoeticTools.nLogCruncher.UI.Commands;
+using NoeticTools.nLogCruncher.UI.Converters;
 
 
 namespace NoeticTools.nLogCruncher
@@ -43,7 +44,9 @@ namespace NoeticTools.nLogCruncher
             TimeStampConverter = new EventTimestampConverter(data);
             EventMessageConverter = new EventMessageConverter(data);
 
+            AddEventToSetCommand = new AddEventToSetCommand(data);
             AddEventsWithMessageToSetCommand = new AddEventsWithMessageToSetCommand(data);
+
             SetReferenceEventCommand = new SetReferenceEventCommand(data);
             HideEventsWithMessageCommand = new HideEventsWithMessageCommand(data);
             HideEventsInContextCommand = new HideEventsInContextCommand(data);
@@ -60,6 +63,7 @@ namespace NoeticTools.nLogCruncher
         public static IValueConverter TimeStampConverter { get; private set; }
         public static IValueConverter EventMessageConverter { get; private set; }
 
+        public static ICommand AddEventToSetCommand { get; private set; }
         public static ICommand AddEventsWithMessageToSetCommand { get; private set; }
         public static ICommand SetReferenceEventCommand { get; private set; }
         public static ICommand HideEventsWithMessageCommand { get; private set; }

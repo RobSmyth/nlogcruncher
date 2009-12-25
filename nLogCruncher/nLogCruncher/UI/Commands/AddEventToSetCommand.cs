@@ -24,11 +24,11 @@ using System.Windows.Input;
 
 namespace NoeticTools.nLogCruncher.UI.Commands
 {
-    public class AddEventsWithMessageToSetCommand : ICommand
+    public class AddEventToSetCommand : ICommand
     {
         private readonly IEventsFormatterData formatterData;
 
-        public AddEventsWithMessageToSetCommand(IEventsFormatterData formatterData)
+        public AddEventToSetCommand(IEventsFormatterData formatterData)
         {
             this.formatterData = formatterData;
         }
