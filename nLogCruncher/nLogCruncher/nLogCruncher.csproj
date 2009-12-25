@@ -110,6 +110,7 @@
     <Compile Include="Domain\ILogEvent.cs" />
     <Compile Include="Domain\IStateListener.cs" />
     <Compile Include="Domain\LogCruncherEvent.cs" />
+    <Compile Include="Domain\LogSet.cs" />
     <Compile Include="IMessageQueue.cs" />
     <Compile Include="Domain\LogEvent.cs" />
     <Compile Include="MessageQueue.cs" />
@@ -129,7 +130,7 @@
     <Compile Include="UDPListener.cs" />
     <Compile Include="UI\Commands\AddEventsWithMessageToSetCommand.cs" />
     <Compile Include="UI\Commands\ShowContextDepthCommand.cs" />
-    <Compile Include="UI\EventSetConverter.cs" />
+    <Compile Include="UI\LogSetConverter.cs" />
     <Compile Include="UI\EventMessageConverter.cs" />
     <Compile Include="UI\EventsFormatterData.cs" />
     <Compile Include="UI\EventTimestampConverter.cs" />

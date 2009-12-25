@@ -156,7 +156,7 @@
 
             <tk:DataGrid.Columns>
                 <tk:DataGridTextColumn Header="" Width="SizeToCells"  
-                                           Binding="{Binding Path=Self, Converter={x:Static nLogCruncher:MainWindow.EventGroupConverter}}"
+                                           Binding="{Binding Path=Self, Converter={x:Static nLogCruncher:MainWindow.LogSetConverter}}"
                                            IsReadOnly="True" MinWidth="10" />
                 <tk:DataGridTextColumn Header="Time" Width="SizeToCells"  
                                            Binding="{Binding Path=Time, Converter={x:Static nLogCruncher:MainWindow.TimeStampConverter}}"
