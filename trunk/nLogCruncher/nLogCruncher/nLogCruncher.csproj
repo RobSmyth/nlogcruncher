@@ -108,6 +108,7 @@
     <Compile Include="Domain\IEventLevel.cs" />
     <Compile Include="Domain\IEventListener.cs" />
     <Compile Include="Domain\ILogEvent.cs" />
+    <Compile Include="Domain\ILogSet.cs" />
     <Compile Include="Domain\IStateListener.cs" />
     <Compile Include="Domain\LogCruncherEvent.cs" />
     <Compile Include="Domain\LogSet.cs" />
