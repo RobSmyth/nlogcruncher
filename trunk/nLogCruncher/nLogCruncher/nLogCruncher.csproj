@@ -109,9 +109,11 @@
     <Compile Include="Domain\IEventListener.cs" />
     <Compile Include="Domain\ILogEvent.cs" />
     <Compile Include="Domain\ILogSet.cs" />
+    <Compile Include="Domain\ILogSets.cs" />
     <Compile Include="Domain\IStateListener.cs" />
     <Compile Include="Domain\LogCruncherEvent.cs" />
     <Compile Include="Domain\LogSet.cs" />
+    <Compile Include="Domain\LogSets.cs" />
     <Compile Include="IMessageQueue.cs" />
     <Compile Include="Domain\LogEvent.cs" />
     <Compile Include="MessageQueue.cs" />
@@ -129,12 +131,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="UDPListener.cs" />
+    <Compile Include="UI\Commands\AddEventToSetCommand.cs" />
     <Compile Include="UI\Commands\AddEventsWithMessageToSetCommand.cs" />
     <Compile Include="UI\Commands\ShowContextDepthCommand.cs" />
-    <Compile Include="UI\LogSetConverter.cs" />
-    <Compile Include="UI\EventMessageConverter.cs" />
+    <Compile Include="UI\Converters\LogSetConverter.cs" />
+    <Compile Include="UI\Converters\EventMessageConverter.cs" />
     <Compile Include="UI\EventsFormatterData.cs" />
-    <Compile Include="UI\EventTimestampConverter.cs" />
+    <Compile Include="UI\Converters\EventTimestampConverter.cs" />
     <Compile Include="UI\Commands\HideEventsInContextCommand.cs" />
     <Compile Include="UI\Commands\HideEventsWithMessageCommand.cs" />
     <Compile Include="UI\IEventsFormatterData.cs" />
@@ -193,7 +196,6 @@
     <Resource Include="NoeticToolsLogo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UI\Converters\" />
     <Folder Include="UI\Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

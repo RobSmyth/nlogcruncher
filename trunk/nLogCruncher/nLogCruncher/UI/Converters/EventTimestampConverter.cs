@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 
 // The contents of this file are subject to the Mozilla Public License
 //  Version 1.1 (the "License"); you may not use this file except in compliance
@@ -20,39 +20,33 @@
 
 using System;
 using System.Globalization;
-using System.Text;
 using System.Windows.Data;
-using NoeticTools.nLogCruncher.Domain;
 
 
-namespace NoeticTools.nLogCruncher.UI
+namespace NoeticTools.nLogCruncher.UI.Converters
 {
-    public class EventMessageConverter : IValueConverter
+    public class EventTimestampConverter : IValueConverter
     {
         private readonly IEventsFormatterData formatterData;
 
-        public EventMessageConverter(IEventsFormatterData formatterData)
+        public EventTimestampConverter(IEventsFormatterData formatterData)
         {
             this.formatterData = formatterData;
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var logEvent = (ILogEvent) value;
-            var message = logEvent.Message;
-
-            if (formatterData.ShowContextDepth)
+            var timestamp = (DateTime) value;
+            if (formatterData.TimeFormat == TimeStampFormat.Relative)
             {
-                var messageFormat = new StringBuilder();
-                for (var indexLevel = 0; indexLevel < logEvent.Context.Depth; indexLevel++)
-                {
-                    messageFormat.Append("  ");
-                }
-                messageFormat.Append("{0}");
-                message = string.Format(messageFormat.ToString(), logEvent.Message);
+                var relativeTime = timestamp - formatterData.ReferenceLogEvent.Time;
+                var negative = relativeTime < TimeSpan.Zero;
+                var duration = relativeTime.Duration();
+                return string.Format("{0}{1:00}:{2:00}:{3:00}.{4:000}",
+                                     negative ? "-" : "",
+                                     duration.Hours, duration.Minutes, duration.Seconds, duration.Milliseconds);
             }
-
-            return message;
+            return timestamp.ToString("HH:MM:ss.fff");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
