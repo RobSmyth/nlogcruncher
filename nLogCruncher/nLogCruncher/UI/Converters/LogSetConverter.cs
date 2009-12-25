@@ -29,18 +29,18 @@ namespace NoeticTools.nLogCruncher.UI.Converters
 {
     public class LogSetConverter : IValueConverter
     {
-        private readonly IEventsFormatterData formatterData;
+        private readonly ILogSets logSets;
 
-        public LogSetConverter(IEventsFormatterData formatterData)
+        public LogSetConverter(ILogSets logSets)
         {
-            this.formatterData = formatterData;
+            this.logSets = logSets;
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var logEvent = (ILogEvent) value;
             var text = new StringBuilder();
-            foreach (var logSet in logEvent.Sets)
+            var logEvent = (ILogEvent)value;
+            foreach (var logSet in logSets.GetSetsFor(logEvent))
             {
                 text.Append(logSet.Name);
             }

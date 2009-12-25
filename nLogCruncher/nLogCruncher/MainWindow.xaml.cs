@@ -35,23 +35,24 @@ namespace NoeticTools.nLogCruncher
     public partial class MainWindow : Window, IStateListener<EventsLogChanged>, IEventListener<FormatChanged>
     {
         public static readonly ListCollectionView DisplayedLogEvents = new ListCollectionView(EventsLog.LogEvents);
-        private readonly EventsFormatterData data;
+        public static ILogSets LogSets = new LogSets();
+        private readonly EventsFormatterData eventsFormatterData;
 
         public MainWindow()
         {
-            data = new EventsFormatterData(this);
-            LogSetConverter = new LogSetConverter(data);
-            TimeStampConverter = new EventTimestampConverter(data);
-            EventMessageConverter = new EventMessageConverter(data);
+            eventsFormatterData = new EventsFormatterData(this);
+            LogSetConverter = new LogSetConverter(LogSets);
+            TimeStampConverter = new EventTimestampConverter(eventsFormatterData);
+            EventMessageConverter = new EventMessageConverter(eventsFormatterData);
 
-            AddEventToSetCommand = new AddEventToSetCommand(data);
-            AddEventsWithMessageToSetCommand = new AddEventsWithMessageToSetCommand(data);
+            AddEventToSetCommand = new AddEventToSetCommand(eventsFormatterData);
+            AddEventsWithMessageToSetCommand = new AddEventsWithMessageToSetCommand(eventsFormatterData);
 
-            SetReferenceEventCommand = new SetReferenceEventCommand(data);
-            HideEventsWithMessageCommand = new HideEventsWithMessageCommand(data);
-            HideEventsInContextCommand = new HideEventsInContextCommand(data);
-            ShowAllEventsCommand = new ShowAllEventsCommand(data);
-            ShowContextDepthCommand = new ShowContextDepthCommand(data);
+            SetReferenceEventCommand = new SetReferenceEventCommand(eventsFormatterData);
+            HideEventsWithMessageCommand = new HideEventsWithMessageCommand(eventsFormatterData);
+            HideEventsInContextCommand = new HideEventsInContextCommand(eventsFormatterData);
+            ShowAllEventsCommand = new ShowAllEventsCommand(eventsFormatterData);
+            ShowContextDepthCommand = new ShowContextDepthCommand(eventsFormatterData);
 
             InitializeComponent();
 
@@ -115,7 +116,7 @@ namespace NoeticTools.nLogCruncher
 
         private bool HiddenMessagesFilter(ILogEvent logEvent)
         {
-            return !data.EventIsHidden(logEvent);
+            return !eventsFormatterData.EventIsHidden(logEvent);
         }
 
         private bool ContextFilter(ILogEvent logEvent)
@@ -148,7 +149,7 @@ namespace NoeticTools.nLogCruncher
             var selectedContext = (IEventContext) eventContextTreeView.SelectedItem;
             if (selectedContext != null)
             {
-                data.HideEventsInContext(selectedContext);
+                eventsFormatterData.HideEventsInContext(selectedContext);
                 Refresh();
             }
         }
@@ -158,7 +159,7 @@ namespace NoeticTools.nLogCruncher
             var selectedContext = (IEventContext) eventContextTreeView.SelectedItem;
             if (selectedContext != null)
             {
-                data.HideEventsInExactContext(selectedContext);
+                eventsFormatterData.HideEventsInExactContext(selectedContext);
                 Refresh();
             }
         }
