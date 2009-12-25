@@ -39,7 +39,7 @@ namespace NoeticTools.nLogCruncher
         public MainWindow()
         {
             data = new EventsFormatterData(this);
-            EventGroupConverter = new EventSetConverter(data);
+            LogSetConverter = new LogSetConverter(data);
             TimeStampConverter = new EventTimestampConverter(data);
             EventMessageConverter = new EventMessageConverter(data);
 
@@ -56,7 +56,7 @@ namespace NoeticTools.nLogCruncher
             Loaded += MainWindow_Loaded;
         }
 
-        public static IValueConverter EventGroupConverter { get; private set; }
+        public static IValueConverter LogSetConverter { get; private set; }
         public static IValueConverter TimeStampConverter { get; private set; }
         public static IValueConverter EventMessageConverter { get; private set; }
 

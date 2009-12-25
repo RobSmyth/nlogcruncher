@@ -32,6 +32,7 @@ namespace NoeticTools.nLogCruncher.Domain
 
         public LogEvent(string eventText, IEventContext rootContext, ICollection<IEventLevel> levels)
         {
+            Sets = new LogSet[0];
             this.eventText = eventText;
 
             string contextName;
@@ -74,6 +75,7 @@ namespace NoeticTools.nLogCruncher.Domain
         public DateTime Time { get; private set; }
         public string Message { get; private set; }
         public IEventContext Context { get; private set; }
+        public LogSet[] Sets { get; private set; }
 
         public ILogEvent Self
         {
