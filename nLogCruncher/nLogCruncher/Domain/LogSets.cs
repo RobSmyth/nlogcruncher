@@ -1,4 +1,4 @@
-using System;
+using System.Linq;
 using System.Collections.Generic;
 
 
@@ -15,8 +15,7 @@ namespace NoeticTools.nLogCruncher.Domain
 
         public ILogSet[] GetSetsFor(ILogEvent logEvent)
         {
-            var matchingSets = new List<ILogSet>();
-            return matchingSets.ToArray();
+            return sets.FindAll(thisSet => thisSet.Includes(logEvent)).ToArray();
         }
     }
 }

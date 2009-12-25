@@ -31,5 +31,10 @@ namespace NoeticTools.nLogCruncher.Domain
         }
 
         public string Name { get; private set; }
+
+        public bool Includes(ILogEvent logEvent)
+        {
+            return true;
+        }
     }
 }
