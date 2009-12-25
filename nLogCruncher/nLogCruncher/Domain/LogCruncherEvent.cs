@@ -30,6 +30,7 @@ namespace NoeticTools.nLogCruncher.Domain
             Message = eventDescription;
             Context = context;
             Time = DateTime.Now;
+            Sets = new ILogSet[0];
         }
 
         public string Level
@@ -40,10 +41,7 @@ namespace NoeticTools.nLogCruncher.Domain
         public DateTime Time { get; private set; }
         public string Message { get; private set; }
         public IEventContext Context { get; private set; }
-
-        public ILogEvent Self
-        {
-            get { return this; }
-        }
+        public ILogSet[] Sets { get; private set; }
+        public ILogEvent Self { get { return this; } }
     }
 }
