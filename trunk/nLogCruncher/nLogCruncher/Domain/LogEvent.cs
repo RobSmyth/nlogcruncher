@@ -30,9 +30,8 @@ namespace NoeticTools.nLogCruncher.Domain
     {
         private readonly string eventText;
 
-        public LogEvent(string eventText, IEventContext rootContext, ICollection<IEventLevel> levels, ILogSets logSets)
+        public LogEvent(string eventText, IEventContext rootContext, ICollection<IEventLevel> levels)
         {
-            Sets = new ILogSet[0];
             this.eventText = eventText;
 
             string contextName;
@@ -75,7 +74,6 @@ namespace NoeticTools.nLogCruncher.Domain
         public DateTime Time { get; private set; }
         public string Message { get; private set; }
         public IEventContext Context { get; private set; }
-        public ILogSet[] Sets { get; private set; }
         public ILogEvent Self { get { return this; } }
         public bool IsControlMessage { get; private set; }
 

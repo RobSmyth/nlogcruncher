@@ -31,11 +31,9 @@ namespace NoeticTools.nLogCruncher.Domain
         public static readonly ObservableCollection<IEventContext> Contexts = new ObservableCollection<IEventContext>();
         public static readonly ObservableCollection<IEventLevel> Levels = new ObservableCollection<IEventLevel>();
         public static readonly ObservableCollection<ILogEvent> LogEvents = new ObservableCollection<ILogEvent>();
-        private static readonly LogSets LogSets = new LogSets();
 
         private static readonly List<IStateListener<EventsLogChanged>> listeners =
             new List<IStateListener<EventsLogChanged>>();
-
 
         private static readonly IEventContext rootContext = new EventContext("Root", null, 0);
         private static readonly TimeSpan updatePeriod = TimeSpan.FromSeconds(0.3);
@@ -121,7 +119,7 @@ namespace NoeticTools.nLogCruncher.Domain
 
                 foreach (var message in messages)
                 {
-                    var logEvent = new LogEvent(message, rootContext, Levels, LogSets);
+                    var logEvent = new LogEvent(message, rootContext, Levels);
 
                     if (logEvent.IsControlMessage)
                     {

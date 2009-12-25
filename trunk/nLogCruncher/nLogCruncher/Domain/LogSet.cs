@@ -18,13 +18,18 @@
 
 #endregion
 
+using System;
+
+
 namespace NoeticTools.nLogCruncher.Domain
 {
     public class LogSet : ILogSet
     {
-        public string Name
+        public LogSet(string name)
         {
-            get { return "A"; }
+            Name = name;
         }
+
+        public string Name { get; private set; }
     }
 }
