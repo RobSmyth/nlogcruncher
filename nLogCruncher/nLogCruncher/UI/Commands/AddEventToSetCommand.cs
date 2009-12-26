@@ -20,21 +20,24 @@
 
 using System;
 using System.Windows.Input;
+using NoeticTools.nLogCruncher.Domain;
 
 
 namespace NoeticTools.nLogCruncher.UI.Commands
 {
     public class AddEventToSetCommand : ICommand
     {
-        private readonly IEventsFormatterData formatterData;
+        private readonly ILogSets logSets;
 
-        public AddEventToSetCommand(IEventsFormatterData formatterData)
+        public AddEventToSetCommand(ILogSets logSets)
         {
-            this.formatterData = formatterData;
+            this.logSets = logSets;
         }
 
         public void Execute(object parameter)
         {
+            var logEvent = (LogEvent) parameter;
+            logSets["A"].Add(logEvent);
         }
 
         public bool CanExecute(object parameter)

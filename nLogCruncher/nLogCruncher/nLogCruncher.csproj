@@ -131,8 +131,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="UDPListener.cs" />
-    <Compile Include="UI\Commands\AddEventToSetCommand.cs" />
     <Compile Include="UI\Commands\AddEventsWithMessageToSetCommand.cs" />
+    <Compile Include="UI\Commands\AddEventToSetCommand.cs" />
     <Compile Include="UI\Commands\ShowContextDepthCommand.cs" />
     <Compile Include="UI\Converters\LogSetConverter.cs" />
     <Compile Include="UI\Converters\EventMessageConverter.cs" />

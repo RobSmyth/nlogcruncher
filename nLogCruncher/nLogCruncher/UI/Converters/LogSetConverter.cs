@@ -39,7 +39,7 @@ namespace NoeticTools.nLogCruncher.UI.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var text = new StringBuilder();
-            var logEvent = (ILogEvent)value;
+            var logEvent = (ILogEvent) value;
             foreach (var logSet in logSets.GetSetsFor(logEvent))
             {
                 text.Append(logSet.Name);
