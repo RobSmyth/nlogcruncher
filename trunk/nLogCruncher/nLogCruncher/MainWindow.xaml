@@ -145,6 +145,7 @@
         </Grid>
 
         <GridSplitter  Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" />
+        
         <tk:DataGrid Name="eventsDataGrid" 
                        Grid.Row="2"
                              Grid.Column="2"

@@ -19,17 +19,21 @@
 #endregion
 
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 
 namespace NoeticTools.nLogCruncher.Domain
 {
     public class LogSets : ILogSets
     {
+        public static readonly ObservableCollection<ILogSet> Sets = new ObservableCollection<ILogSet>();
         private readonly List<ILogSet> sets = new List<ILogSet>();
 
         public LogSets()
         {
-            sets.Add(new LogSet("A"));
+            var defaultLogSet = new LogSet("A");
+            sets.Add(defaultLogSet);
+            Sets.Add(defaultLogSet);
         }
 
         public ILogSet this[string setName]
