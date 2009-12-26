@@ -41,22 +41,6 @@
                       CommandParameter="{Binding Path=Self}">
             </MenuItem>
 
-            <!--
-            <MenuItem Header="Add to set" Command="{x:Static nLogCruncher:MainWindow.AddEventToSetCommand}">
-                <MenuItem.CommandParameter>
-                    <MultiBinding Converter="{StaticResource AddToSetConverter}">
-                        <Binding Path="Self"></Binding>
-                    </MultiBinding>
-                </MenuItem.CommandParameter>
-            </MenuItem>
-
-            <MenuItem Header="Add events with this message to set"
-                                      Command="{x:Static nLogCruncher:MainWindow.AddEventsWithMessageToSetCommand}" 
-                                      CommandParameter="{Binding Path=Self}" />
-            
-            <MenuItem Header="Remove from set" IsEnabled="False"/>
-            -->
-
             <Separator/>
             
             <MenuItem Header="Show all" 
@@ -76,8 +60,8 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" MinHeight="21" />
-            <RowDefinition Height="auto" MinHeight="27" />
+            <RowDefinition Height="Auto" MinHeight="21" />
+            <RowDefinition Height="Auto" MinHeight="27" />
             <RowDefinition />
         </Grid.RowDefinitions>
 

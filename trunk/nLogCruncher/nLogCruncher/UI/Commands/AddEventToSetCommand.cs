@@ -36,8 +36,13 @@ namespace NoeticTools.nLogCruncher.UI.Commands
 
         public void Execute(object parameter)
         {
-            var logEvent = (LogEvent) parameter;
-            logSets["A"].Add(logEvent);
+            //var setSelectionDialog = new SetSelectionWindow();
+            //setSelectionDialog.ShowDialog();
+            //if (setSelectionDialog.DialogResult.HasValue)
+            {
+                var logEvent = (LogEvent) parameter;
+                logSets["A"].Add(logEvent);
+            }
         }
 
         public bool CanExecute(object parameter)
