@@ -16,8 +16,14 @@
             
             <my:DataGrid AutoGenerateColumns="False" Height="Auto" Name="setsDataGrid" 
                          Width="Auto" xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit" 
-                         DockPanel.Dock="Top" ItemsSource="{x:Static nLogCruncher:MainWindow.DisplayedLogSets}" >
-                
+                         DockPanel.Dock="Top" 
+                         ItemsSource="{x:Static nLogCruncher:MainWindow.DisplayedLogSets}" >
+
+                <my:DataGrid.Columns>
+                    <my:DataGridTextColumn Header="Name" Width="Auto"  
+                                           Binding="{Binding Path=Name, Mode=OneWay}" />
+                </my:DataGrid.Columns>
+
             </my:DataGrid>
             
         </DockPanel>
