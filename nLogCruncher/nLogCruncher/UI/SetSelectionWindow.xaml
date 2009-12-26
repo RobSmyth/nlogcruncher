@@ -1,15 +1,21 @@
 ﻿<Window x:Class="NoeticTools.nLogCruncher.UI.SetSelectionWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="Event Sets" Height="300" Width="300" Icon="/NoeticTools.nLogCruncher;component/NoeticToolsLogo.ico">
+    Title="Event Sets" Height="300" Width="306" Icon="/NoeticTools.nLogCruncher;component/NoeticToolsLogo.ico">
     <Grid>
         <DockPanel Name="dockPanel1" LastChildFill="True">
+            
             <WrapPanel Height="Auto" Name="wrapPanel1" Width="Auto" DockPanel.Dock="Bottom" 
                        VerticalAlignment="Center" 
                        FlowDirection="RightToLeft" HorizontalAlignment="Right" Margin="4">
                 <Button Height="23" Name="okButton" Width="75" VerticalAlignment="Center" IsDefault="True">OK</Button>
+                <Button Height="23" Name="cancelButton" Width="75" VerticalAlignment="Center" IsCancel="True">Cancel</Button>
             </WrapPanel>
-            <ListBox Name="listBox1" Width="Auto" Height="Auto" DockPanel.Dock="Top" />
+            
+            <my:DataGrid AutoGenerateColumns="False" Height="Auto" Name="dataGrid1" Width="Auto" xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit" DockPanel.Dock="Top">
+                
+            </my:DataGrid>
+            
         </DockPanel>
     </Grid>
 </Window>
