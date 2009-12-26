@@ -35,7 +35,8 @@ namespace NoeticTools.nLogCruncher
     public partial class MainWindow : Window, IStateListener<EventsLogChanged>, IEventListener<FormatChanged>
     {
         public static readonly ListCollectionView DisplayedLogEvents = new ListCollectionView(EventsLog.LogEvents);
-        public static ILogSets LogSets = new LogSets();
+        public static readonly ListCollectionView DisplayedLogSets = new ListCollectionView(Domain.LogSets.Sets);
+        public static readonly ILogSets LogSets = new LogSets();
         private readonly EventsFormatterData eventsFormatterData;
 
         public MainWindow()
