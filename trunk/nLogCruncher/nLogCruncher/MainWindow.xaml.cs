@@ -45,7 +45,7 @@ namespace NoeticTools.nLogCruncher
             TimeStampConverter = new EventTimestampConverter(eventsFormatterData);
             EventMessageConverter = new EventMessageConverter(eventsFormatterData);
 
-            AddEventToSetCommand = new AddEventToSetCommand(eventsFormatterData);
+            AddEventToSetCommand = new AddEventToSetCommand(LogSets);
             AddEventsWithMessageToSetCommand = new AddEventsWithMessageToSetCommand(eventsFormatterData);
 
             SetReferenceEventCommand = new SetReferenceEventCommand(eventsFormatterData);

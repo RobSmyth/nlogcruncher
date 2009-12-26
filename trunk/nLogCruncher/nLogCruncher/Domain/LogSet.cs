@@ -18,13 +18,15 @@
 
 #endregion
 
-using System;
+using System.Collections.Generic;
 
 
 namespace NoeticTools.nLogCruncher.Domain
 {
     public class LogSet : ILogSet
     {
+        private readonly Dictionary<ILogEvent, bool> events = new Dictionary<ILogEvent, bool>();
+
         public LogSet(string name)
         {
             Name = name;
@@ -34,7 +36,12 @@ namespace NoeticTools.nLogCruncher.Domain
 
         public bool Includes(ILogEvent logEvent)
         {
-            return true;
+            return events.ContainsKey(logEvent);
+        }
+
+        public void Add(LogEvent logEvent)
+        {
+            events.Add(logEvent, true);
         }
     }
 }

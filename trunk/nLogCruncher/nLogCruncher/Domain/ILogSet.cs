@@ -24,5 +24,6 @@ namespace NoeticTools.nLogCruncher.Domain
     {
         string Name { get; }
         bool Includes(ILogEvent logEvent);
+        void Add(LogEvent logEvent);
     }
 }
