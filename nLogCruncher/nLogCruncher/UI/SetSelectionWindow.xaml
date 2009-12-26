@@ -1,0 +1,15 @@
+﻿<Window x:Class="NoeticTools.nLogCruncher.UI.SetSelectionWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Event Sets" Height="300" Width="300" Icon="/NoeticTools.nLogCruncher;component/NoeticToolsLogo.ico">
+    <Grid>
+        <DockPanel Name="dockPanel1" LastChildFill="True">
+            <WrapPanel Height="Auto" Name="wrapPanel1" Width="Auto" DockPanel.Dock="Bottom" 
+                       VerticalAlignment="Center" 
+                       FlowDirection="RightToLeft" HorizontalAlignment="Right" Margin="4">
+                <Button Height="23" Name="okButton" Width="75" VerticalAlignment="Center" IsDefault="True">OK</Button>
+            </WrapPanel>
+            <ListBox Name="listBox1" Width="Auto" Height="Auto" DockPanel.Dock="Top" />
+        </DockPanel>
+    </Grid>
+</Window>
