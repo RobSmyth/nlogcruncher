@@ -23,6 +23,7 @@ namespace NoeticTools.nLogCruncher.Domain
     public interface ILogSet
     {
         string Name { get; }
+        string Description { get; }
         bool Includes(ILogEvent logEvent);
         void Add(LogEvent logEvent);
     }
