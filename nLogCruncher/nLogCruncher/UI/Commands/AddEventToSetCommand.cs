@@ -36,12 +36,11 @@ namespace NoeticTools.nLogCruncher.UI.Commands
 
         public void Execute(object parameter)
         {
-            //var setSelectionDialog = new SetSelectionWindow();
-            //setSelectionDialog.ShowDialog();
-            //if (setSelectionDialog.DialogResult.HasValue)
+            var setSelectionDialog = new SetSelectionWindow(logSets);
+            if (setSelectionDialog.ShowDialog() == true && setSelectionDialog.DialogResult.HasValue)
             {
                 var logEvent = (LogEvent) parameter;
-                logSets["A"].Add(logEvent);
+                setSelectionDialog.SelectedSet.Add(logEvent);
             }
         }
 

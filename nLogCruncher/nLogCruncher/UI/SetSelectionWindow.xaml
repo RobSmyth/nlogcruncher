@@ -10,18 +10,22 @@
             <WrapPanel Height="Auto" Name="wrapPanel1" Width="Auto" DockPanel.Dock="Bottom" 
                        VerticalAlignment="Center" 
                        FlowDirection="RightToLeft" HorizontalAlignment="Right" Margin="4">
-                <Button Height="23" Name="okButton" Width="75" VerticalAlignment="Center" IsDefault="True">OK</Button>
+                <Button Height="23" Name="okButton" Width="75" VerticalAlignment="Center" IsDefault="True" Click="okButton_Click">OK</Button>
                 <Button Height="23" Name="cancelButton" Width="75" VerticalAlignment="Center" IsCancel="True">Cancel</Button>
             </WrapPanel>
             
             <my:DataGrid AutoGenerateColumns="False" Height="Auto" Name="setsDataGrid" 
                          Width="Auto" xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit" 
                          DockPanel.Dock="Top" 
-                         ItemsSource="{x:Static nLogCruncher:MainWindow.DisplayedLogSets}" >
+                         ItemsSource="{x:Static nLogCruncher:MainWindow.DisplayedLogSets}" 
+                         CanUserDeleteRows="False" 
+                         SelectionMode="Single" SelectionUnit="CellOrRowHeader">
 
                 <my:DataGrid.Columns>
-                    <my:DataGridTextColumn Header="Name" Width="Auto"  
+                    <my:DataGridTextColumn Header="Set" Width="Auto"  
                                            Binding="{Binding Path=Name, Mode=OneWay}" />
+                    <my:DataGridTextColumn Header="Descritpion" Width="Auto"  
+                                           Binding="{Binding Path=Descritpion, Mode=TwoWay}" IsReadOnly="False" />
                 </my:DataGrid.Columns>
 
             </my:DataGrid>
