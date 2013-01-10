@@ -27,19 +27,19 @@ namespace NoeticTools.nLogCruncher.UI.Converters
 {
     public class EventTimestampConverter : IValueConverter
     {
-        private readonly IEventsFormatterData formatterData;
+        private readonly IEventsFormatterData _formatterData;
 
         public EventTimestampConverter(IEventsFormatterData formatterData)
         {
-            this.formatterData = formatterData;
+            this._formatterData = formatterData;
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var timestamp = (DateTime) value;
-            if (formatterData.TimeFormat == TimeStampFormat.Relative)
+            if (_formatterData.TimeFormat == TimeStampFormat.Relative)
             {
-                var relativeTime = timestamp - formatterData.ReferenceLogEvent.Time;
+                var relativeTime = timestamp - _formatterData.ReferenceLogEvent.Time;
                 var negative = relativeTime < TimeSpan.Zero;
                 var duration = relativeTime.Duration();
                 return string.Format("{0}{1:00}:{2:00}:{3:00}.{4:000}",

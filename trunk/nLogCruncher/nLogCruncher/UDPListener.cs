@@ -56,7 +56,7 @@ namespace NoeticTools.nLogCruncher
             var messageQueue = (IMessageQueue) data;
 
             var receivingUdpClient = new UdpClient(4000);
-            var RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
+            var remoteIpEndPoint = new IPEndPoint(IPAddress.Any, 0);
 
             try
             {
@@ -66,7 +66,7 @@ namespace NoeticTools.nLogCruncher
                     timeReceiving.Start();
                     while (receivingUdpClient.Available > 0 && timeReceiving.Elapsed < timeReadingLimit)
                     {
-                        var receiveBytes = receivingUdpClient.Receive(ref RemoteIpEndPoint);
+                        var receiveBytes = receivingUdpClient.Receive(ref remoteIpEndPoint);
                         var message = Encoding.ASCII.GetString(receiveBytes);
                         messageQueue.Enqueue(message);
                     }
