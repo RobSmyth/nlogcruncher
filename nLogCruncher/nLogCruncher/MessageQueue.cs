@@ -25,16 +25,16 @@ namespace NoeticTools.nLogCruncher
 {
     internal class MessageQueue : IMessageQueue
     {
-        private readonly Queue<string> messageQueue = new Queue<string>();
+        private readonly Queue<string> _messageQueue = new Queue<string>();
 
         public bool HasMessages
         {
             get
             {
                 bool hasMesssages;
-                lock (messageQueue)
+                lock (_messageQueue)
                 {
-                    hasMesssages = messageQueue.Count > 0;
+                    hasMesssages = _messageQueue.Count > 0;
                 }
                 return hasMesssages;
             }
@@ -42,19 +42,19 @@ namespace NoeticTools.nLogCruncher
 
         public void Enqueue(string message)
         {
-            lock (messageQueue)
+            lock (_messageQueue)
             {
-                messageQueue.Enqueue(message);
+                _messageQueue.Enqueue(message);
             }
         }
 
         public string[] Dequeue()
         {
             string[] messages;
-            lock (messageQueue)
+            lock (_messageQueue)
             {
-                messages = messageQueue.ToArray();
-                messageQueue.Clear();
+                messages = _messageQueue.ToArray();
+                _messageQueue.Clear();
             }
             return messages;
         }

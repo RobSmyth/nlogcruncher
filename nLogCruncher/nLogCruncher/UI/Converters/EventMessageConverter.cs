@@ -29,11 +29,11 @@ namespace NoeticTools.nLogCruncher.UI.Converters
 {
     public class EventMessageConverter : IValueConverter
     {
-        private readonly IEventsFormatterData formatterData;
+        private readonly IEventsFormatterData _formatterData;
 
         public EventMessageConverter(IEventsFormatterData formatterData)
         {
-            this.formatterData = formatterData;
+            _formatterData = formatterData;
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -41,7 +41,7 @@ namespace NoeticTools.nLogCruncher.UI.Converters
             var logEvent = (ILogEvent) value;
             var message = logEvent.Message;
 
-            if (formatterData.ShowContextDepth)
+            if (_formatterData.ShowContextDepth)
             {
                 var messageFormat = new StringBuilder();
                 for (var indexLevel = 0; indexLevel < logEvent.Context.Depth; indexLevel++)

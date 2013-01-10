@@ -21,6 +21,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Threading;
 
 
@@ -88,12 +89,7 @@ namespace NoeticTools.nLogCruncher.Domain
 
         private static IEventContext GetContext(string contextText)
         {
-            var context = RootContext;
-            foreach (var name in contextText.Split('.'))
-            {
-                context = context.GetContext(name);
-            }
-            return context;
+            return contextText.Split('.').Aggregate(RootContext, (current, name) => current.GetContext(name));
         }
 
         private static void AddDefaultLevels()

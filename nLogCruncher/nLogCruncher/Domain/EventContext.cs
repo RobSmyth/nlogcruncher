@@ -28,11 +28,11 @@ namespace NoeticTools.nLogCruncher.Domain
 {
     public class EventContext : IEventContext, IEquatable<IEventContext>
     {
-        private readonly IEventContext parent;
+        private readonly IEventContext _parent;
 
         public EventContext(string name, IEventContext parent, int depth)
         {
-            this.parent = parent;
+            this._parent = parent;
             Depth = depth;
             Children = new ObservableCollection<IEventContext>();
             Name = name;
@@ -56,7 +56,13 @@ namespace NoeticTools.nLogCruncher.Domain
         {
             get
             {
-                var prefix = parent != null ? parent.FullName + "." : string.Empty;
+                var prefix = _parent != null ? _parent.FullName + "." : string.Empty;
+
+                if (prefix.StartsWith("Root.", StringComparison.InvariantCulture))
+                {
+                    prefix = prefix.Substring("Root.".Length);
+                }
+
                 return (prefix + Name).Trim('.');
             }
         }
