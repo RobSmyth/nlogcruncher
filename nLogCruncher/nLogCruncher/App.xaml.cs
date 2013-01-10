@@ -20,6 +20,7 @@
 
 using System.Windows;
 
+
 namespace NoeticTools.nLogCruncher
 {
     /// <summary>

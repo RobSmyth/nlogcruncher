@@ -21,6 +21,7 @@
 using System.Windows;
 using NoeticTools.nLogCruncher.Domain;
 
+
 namespace NoeticTools.nLogCruncher.UI
 {
     public partial class SetSelectionWindow : Window

@@ -21,6 +21,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
+
 namespace NoeticTools.nLogCruncher.Domain
 {
     public class LogSets : ILogSets

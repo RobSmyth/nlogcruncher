@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Threading;
 
+
 namespace NoeticTools.nLogCruncher.Domain
 {
     public static class EventsLog
@@ -30,16 +31,16 @@ namespace NoeticTools.nLogCruncher.Domain
         public static readonly ObservableCollection<IEventContext> Contexts = new ObservableCollection<IEventContext>();
         public static readonly ObservableCollection<IEventLevel> Levels = new ObservableCollection<IEventLevel>();
 
-        private static readonly List<IStateListener<EventsLogChanged>> listeners =
+        private static readonly List<IStateListener<EventsLogChanged>> Listeners =
             new List<IStateListener<EventsLogChanged>>();
 
         public static readonly ObservableCollection<ILogEvent> LogEvents = new ObservableCollection<ILogEvent>();
 
-        private static readonly IEventContext rootContext = new EventContext("Root", null, 0);
+        private static readonly IEventContext RootContext = new EventContext("Root", null, 0);
         private static readonly TimeSpan UpdatePeriod = TimeSpan.FromSeconds(0.3);
-        private static MessageQueue messageQueue;
-        private static DispatcherTimer tickTimer;
-        private static UDPListener udpListener;
+        private static MessageQueue _messageQueue;
+        private static DispatcherTimer _tickTimer;
+        private static UDPListener _udpListener;
 
         static EventsLog()
         {
@@ -53,20 +54,20 @@ namespace NoeticTools.nLogCruncher.Domain
             LogEvents.Clear();
             Levels.Clear();
             AddDefaultLevels();
-            rootContext.Clear();
+            RootContext.Clear();
             AddLoggerEvent("Cleared all captured events");
         }
 
         public static void StartLogging()
         {
-            Contexts.Add(rootContext);
-            messageQueue = new MessageQueue();
-            udpListener = new UDPListener();
-            udpListener.Start(messageQueue);
+            Contexts.Add(RootContext);
+            _messageQueue = new MessageQueue();
+            _udpListener = new UDPListener();
+            _udpListener.Start(_messageQueue);
 
-            tickTimer = new DispatcherTimer {Interval = UpdatePeriod};
-            tickTimer.Tick += tickTimer_Tick;
-            tickTimer.Start();
+            _tickTimer = new DispatcherTimer {Interval = UpdatePeriod};
+            _tickTimer.Tick += tickTimer_Tick;
+            _tickTimer.Start();
 
             Running = true;
             AddLoggerEvent("Log capture started");
@@ -75,19 +76,19 @@ namespace NoeticTools.nLogCruncher.Domain
         public static void Stop()
         {
             Running = false;
-            tickTimer.Stop();
-            udpListener.Stop();
+            _tickTimer.Stop();
+            _udpListener.Stop();
             AddLoggerEvent("Log capture stopped");
         }
 
         public static void AddListener(IStateListener<EventsLogChanged> listener)
         {
-            listeners.Add(listener);
+            Listeners.Add(listener);
         }
 
         private static IEventContext GetContext(string contextText)
         {
-            var context = rootContext;
+            var context = RootContext;
             foreach (var name in contextText.Split('.'))
             {
                 context = context.GetContext(name);
@@ -113,13 +114,13 @@ namespace NoeticTools.nLogCruncher.Domain
 
         private static void tickTimer_Tick(object sender, EventArgs e)
         {
-            if (messageQueue.HasMessages)
+            if (_messageQueue.HasMessages)
             {
-                var messages = messageQueue.Dequeue();
+                var messages = _messageQueue.Dequeue();
 
                 foreach (var message in messages)
                 {
-                    var logEvent = new LogEvent(message, rootContext, Levels);
+                    var logEvent = new LogEvent(message, RootContext, Levels);
 
                     if (logEvent.IsControlMessage)
                     {
@@ -154,7 +155,7 @@ namespace NoeticTools.nLogCruncher.Domain
 
         private static void OnChanged()
         {
-            foreach (var listener in listeners)
+            foreach (var listener in Listeners)
             {
                 listener.OnChange();
             }

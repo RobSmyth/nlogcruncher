@@ -24,6 +24,7 @@ using System.Text;
 using System.Windows.Data;
 using NoeticTools.nLogCruncher.Domain;
 
+
 namespace NoeticTools.nLogCruncher.UI.Converters
 {
     public class EventMessageConverter : IValueConverter

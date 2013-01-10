@@ -21,6 +21,7 @@
 using System.Collections.ObjectModel;
 using NoeticTools.nLogCruncher.UI;
 
+
 namespace NoeticTools.nLogCruncher.Domain
 {
     public interface IEventContext

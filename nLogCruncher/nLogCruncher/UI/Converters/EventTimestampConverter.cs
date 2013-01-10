@@ -22,6 +22,7 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 
+
 namespace NoeticTools.nLogCruncher.UI.Converters
 {
     public class EventTimestampConverter : IValueConverter

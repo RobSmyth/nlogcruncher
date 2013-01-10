@@ -28,6 +28,7 @@ using NoeticTools.nLogCruncher.UI;
 using NoeticTools.nLogCruncher.UI.Commands;
 using NoeticTools.nLogCruncher.UI.Converters;
 
+
 namespace NoeticTools.nLogCruncher
 {
     public partial class MainWindow : Window, IStateListener<EventsLogChanged>, IEventListener<FormatChanged>

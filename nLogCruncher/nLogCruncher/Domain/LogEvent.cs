@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
+
 namespace NoeticTools.nLogCruncher.Domain
 {
     public class LogEvent : ILogEvent
