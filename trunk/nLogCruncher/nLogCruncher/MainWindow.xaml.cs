@@ -1,24 +1,23 @@
 #region Copyright
 
-// The contents of this file are subject to the Mozilla Public License
-//  Version 1.1 (the "License"); you may not use this file except in compliance
-//  with the License. You may obtain a copy of the License at
-//  
-//  http://www.mozilla.org/MPL/
-//  
-//  Software distributed under the License is distributed on an "AS IS"
-//  basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
-//  License for the specific language governing rights and limitations under 
-//  the License.
-//  
-//  The Initial Developer of the Original Code is Robert Smyth.
-//  Portions created by Robert Smyth are Copyright (C) 2008.
-//  
-//  All Rights Reserved.
+// // The contents of this file are subject to the Mozilla Public License
+// // Version 1.1 (the "License"); you may not use this file except in compliance
+// // with the License. You may obtain a copy of the License at
+// //   
+// // http://www.mozilla.org/MPL/
+// //   
+// // Software distributed under the License is distributed on an "AS IS"
+// // basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+// // License for the specific language governing rights and limitations under 
+// // the License.
+// //   
+// // The Initial Developer of the Original Code is Robert Smyth.
+// // Portions created by Robert Smyth are Copyright (C) 2008,2013.
+// //   
+// // All Rights Reserved.
 
 #endregion
 
-using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -29,7 +28,6 @@ using NoeticTools.nLogCruncher.UI;
 using NoeticTools.nLogCruncher.UI.Commands;
 using NoeticTools.nLogCruncher.UI.Converters;
 
-
 namespace NoeticTools.nLogCruncher
 {
     public partial class MainWindow : Window, IStateListener<EventsLogChanged>, IEventListener<FormatChanged>
@@ -37,23 +35,23 @@ namespace NoeticTools.nLogCruncher
         public static readonly ListCollectionView DisplayedLogEvents = new ListCollectionView(EventsLog.LogEvents);
         public static readonly ListCollectionView DisplayedLogSets = new ListCollectionView(Domain.LogSets.Sets);
         public static readonly ILogSets LogSets = new LogSets();
-        private readonly EventsFormatterData eventsFormatterData;
+        private readonly EventsFormatterData _eventsFormatterData;
 
         public MainWindow()
         {
-            eventsFormatterData = new EventsFormatterData(this);
+            _eventsFormatterData = new EventsFormatterData(this);
             LogSetConverter = new LogSetConverter(LogSets);
-            TimeStampConverter = new EventTimestampConverter(eventsFormatterData);
-            EventMessageConverter = new EventMessageConverter(eventsFormatterData);
+            TimeStampConverter = new EventTimestampConverter(_eventsFormatterData);
+            EventMessageConverter = new EventMessageConverter(_eventsFormatterData);
 
             AddEventToSetCommand = new AddEventToSetCommand(LogSets);
-            AddEventsWithMessageToSetCommand = new AddEventsWithMessageToSetCommand(eventsFormatterData);
+            AddEventsWithMessageToSetCommand = new AddEventsWithMessageToSetCommand(_eventsFormatterData);
 
-            SetReferenceEventCommand = new SetReferenceEventCommand(eventsFormatterData);
-            HideEventsWithMessageCommand = new HideEventsWithMessageCommand(eventsFormatterData);
-            HideEventsInContextCommand = new HideEventsInContextCommand(eventsFormatterData);
-            ShowAllEventsCommand = new ShowAllEventsCommand(eventsFormatterData);
-            ShowContextDepthCommand = new ShowContextDepthCommand(eventsFormatterData);
+            SetReferenceEventCommand = new SetReferenceEventCommand(_eventsFormatterData);
+            HideEventsWithMessageCommand = new HideEventsWithMessageCommand(_eventsFormatterData);
+            HideEventsInContextCommand = new HideEventsInContextCommand(_eventsFormatterData);
+            ShowAllEventsCommand = new ShowAllEventsCommand(_eventsFormatterData);
+            ShowContextDepthCommand = new ShowContextDepthCommand(_eventsFormatterData);
 
             InitializeComponent();
 
@@ -87,7 +85,7 @@ namespace NoeticTools.nLogCruncher
         {
             eventsDataGrid.DataContext = DisplayedLogEvents;
             eventContextTreeView.SelectedItemChanged += eventContextTreeView_SelectedItemChanged;
-            DisplayedLogEvents.Filter = new Predicate<object>(EventFilter);
+            DisplayedLogEvents.Filter = EventFilter;
 
             EventsLog.StartLogging();
             EventsLog.AddListener(this);
@@ -117,7 +115,7 @@ namespace NoeticTools.nLogCruncher
 
         private bool HiddenMessagesFilter(ILogEvent logEvent)
         {
-            return !eventsFormatterData.EventIsHidden(logEvent);
+            return !_eventsFormatterData.EventIsHidden(logEvent);
         }
 
         private bool ContextFilter(ILogEvent logEvent)
@@ -150,7 +148,7 @@ namespace NoeticTools.nLogCruncher
             var selectedContext = (IEventContext) eventContextTreeView.SelectedItem;
             if (selectedContext != null)
             {
-                eventsFormatterData.HideEventsInContext(selectedContext);
+                _eventsFormatterData.HideEventsInContext(selectedContext);
                 Refresh();
             }
         }
@@ -160,7 +158,7 @@ namespace NoeticTools.nLogCruncher
             var selectedContext = (IEventContext) eventContextTreeView.SelectedItem;
             if (selectedContext != null)
             {
-                eventsFormatterData.HideEventsInExactContext(selectedContext);
+                _eventsFormatterData.HideEventsInExactContext(selectedContext);
                 Refresh();
             }
         }
