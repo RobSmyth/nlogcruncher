@@ -21,6 +21,7 @@
 using System;
 using System.Windows.Input;
 
+
 namespace NoeticTools.nLogCruncher.UI.Commands
 {
     public class AddEventsWithMessageToSetCommand : ICommand

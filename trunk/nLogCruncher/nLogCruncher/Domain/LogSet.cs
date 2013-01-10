@@ -20,6 +20,7 @@
 
 using System.Collections.Generic;
 
+
 namespace NoeticTools.nLogCruncher.Domain
 {
     public class LogSet : ILogSet

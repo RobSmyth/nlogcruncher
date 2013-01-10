@@ -22,21 +22,21 @@ using System;
 using System.Windows.Input;
 using NoeticTools.nLogCruncher.Domain;
 
+
 namespace NoeticTools.nLogCruncher.UI.Commands
 {
     public class HideEventsInContextCommand : ICommand
     {
-        private readonly IEventsFormatterData data;
+        private readonly IEventsFormatterData _data;
 
         public HideEventsInContextCommand(IEventsFormatterData data)
         {
-            this.data = data;
+            _data = data;
         }
 
         public void Execute(object parameter)
         {
-            Console.WriteLine("Type is {0}", parameter.GetType()); //>>>
-            data.HideEventsInExactContext(((ILogEvent) parameter).Context);
+            _data.HideEventsInExactContext(((ILogEvent) parameter).Context);
         }
 
         public bool CanExecute(object parameter)

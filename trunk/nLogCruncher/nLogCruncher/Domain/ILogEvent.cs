@@ -20,6 +20,7 @@
 
 using System;
 
+
 namespace NoeticTools.nLogCruncher.Domain
 {
     public interface ILogEvent

@@ -21,20 +21,21 @@
 using System;
 using System.Windows.Input;
 
+
 namespace NoeticTools.nLogCruncher.UI.Commands
 {
     public class ShowContextDepthCommand : ICommand
     {
-        private readonly IEventsFormatterData data;
+        private readonly IEventsFormatterData _data;
 
         public ShowContextDepthCommand(IEventsFormatterData data)
         {
-            this.data = data;
+            _data = data;
         }
 
         public void Execute(object parameter)
         {
-            data.ShowContextDepth = true;
+            _data.ShowContextDepth = true;
         }
 
         public bool CanExecute(object parameter)

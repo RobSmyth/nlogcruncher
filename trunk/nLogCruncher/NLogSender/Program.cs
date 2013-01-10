@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Threading;
 using NLog;
 
+
 namespace NoeticTools.nLogCruncher.Tests.NLogSender
 {
     internal class Program

@@ -22,6 +22,7 @@ using System;
 using System.Diagnostics;
 using NLog;
 
+
 namespace NoeticTools.nLogCruncher.Tests.NLogSender
 {
     internal class PeriodicEvent

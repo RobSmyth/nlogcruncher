@@ -20,6 +20,7 @@
 
 using NoeticTools.nLogCruncher.Domain;
 
+
 namespace NoeticTools.nLogCruncher.UI
 {
     public interface IEventsFormatterData

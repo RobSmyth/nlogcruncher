@@ -21,20 +21,21 @@
 using System.Collections.Generic;
 using NoeticTools.nLogCruncher.Domain;
 
+
 namespace NoeticTools.nLogCruncher.UI
 {
     public class EventsFormatterData : IEventsFormatterData
     {
-        private readonly List<IEventContext> cachedContexts = new List<IEventContext>();
-        private readonly IEventListener<FormatChanged> formatChangedListener;
-        private readonly List<IEventContext> hiddenContextsCache = new List<IEventContext>();
-        private bool showContextDepth;
-        private TimeStampFormat timeFormat;
+        private readonly List<IEventContext> _cachedContexts = new List<IEventContext>();
+        private readonly IEventListener<FormatChanged> _formatChangedListener;
+        private readonly List<IEventContext> _hiddenContextsCache = new List<IEventContext>();
+        private bool _showContextDepth;
+        private TimeStampFormat _timeFormat;
 
         public EventsFormatterData(IEventListener<FormatChanged> formatChangedListener)
         {
-            this.formatChangedListener = formatChangedListener;
-            timeFormat = TimeStampFormat.Absolute;
+            _formatChangedListener = formatChangedListener;
+            _timeFormat = TimeStampFormat.Absolute;
             HiddenMessages = new List<string>();
         }
 
@@ -44,11 +45,11 @@ namespace NoeticTools.nLogCruncher.UI
 
         public TimeStampFormat TimeFormat
         {
-            get { return timeFormat; }
+            get { return _timeFormat; }
             set
             {
-                timeFormat = value;
-                formatChangedListener.OnChange();
+                _timeFormat = value;
+                _formatChangedListener.OnChange();
             }
         }
 
@@ -56,30 +57,30 @@ namespace NoeticTools.nLogCruncher.UI
         {
             set
             {
-                showContextDepth = true;
-                formatChangedListener.OnChange();
+                _showContextDepth = true;
+                _formatChangedListener.OnChange();
             }
-            get { return showContextDepth; }
+            get { return _showContextDepth; }
         }
 
         public void HideMessages(string message)
         {
             HiddenMessages.Add(message);
-            formatChangedListener.OnChange();
+            _formatChangedListener.OnChange();
         }
 
         public void HideEventsInExactContext(IEventContext context)
         {
             OnFilterChanged();
             context.ShowEvents = ShowEvents.HideExact;
-            cachedContexts.Add(context);
+            _cachedContexts.Add(context);
         }
 
         public void HideEventsInContext(IEventContext context)
         {
             OnFilterChanged();
             context.ShowEvents = ShowEvents.HideThisAndChildren;
-            cachedContexts.Add(context);
+            _cachedContexts.Add(context);
         }
 
         public void ShowAllEvents()
@@ -101,7 +102,7 @@ namespace NoeticTools.nLogCruncher.UI
 
             if (!isHidden)
             {
-                foreach (var eventContext in cachedContexts)
+                foreach (var eventContext in _cachedContexts)
                 {
                     if (eventContext.ShowEvents == ShowEvents.HideThisAndChildren)
                     {
@@ -117,14 +118,14 @@ namespace NoeticTools.nLogCruncher.UI
 
             if (context.ShowEvents != ShowEvents.Yes)
             {
-                if (!cachedContexts.Contains(context))
+                if (!_cachedContexts.Contains(context))
                 {
-                    cachedContexts.Add(context);
+                    _cachedContexts.Add(context);
                 }
 
-                if (!hiddenContextsCache.Contains(context))
+                if (!_hiddenContextsCache.Contains(context))
                 {
-                    hiddenContextsCache.Add(context);
+                    _hiddenContextsCache.Add(context);
                 }
             }
 
@@ -133,20 +134,20 @@ namespace NoeticTools.nLogCruncher.UI
 
         private void ClearCache()
         {
-            foreach (var context in cachedContexts)
+            foreach (var context in _cachedContexts)
             {
                 context.ShowEvents = ShowEvents.Unknown;
             }
-            foreach (var context in hiddenContextsCache)
+            foreach (var context in _hiddenContextsCache)
             {
                 context.ShowEvents = ShowEvents.Unknown;
             }
-            hiddenContextsCache.Clear();
+            _hiddenContextsCache.Clear();
         }
 
         private void OnFilterChanged()
         {
-            formatChangedListener.OnChange();
+            _formatChangedListener.OnChange();
         }
     }
 }
