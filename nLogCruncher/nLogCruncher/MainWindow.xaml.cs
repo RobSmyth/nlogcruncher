@@ -27,6 +27,7 @@ using NoeticTools.nLogCruncher.Domain;
 using NoeticTools.nLogCruncher.UI;
 using NoeticTools.nLogCruncher.UI.Commands;
 using NoeticTools.nLogCruncher.UI.Converters;
+using NoeticTools.nLogCruncher.Views;
 
 
 namespace NoeticTools.nLogCruncher
@@ -190,6 +191,11 @@ namespace NoeticTools.nLogCruncher
             {
                 EventsLog.StartLogging();
             }
+        }
+
+        private void ShowHelpAbout_Click(object sender, RoutedEventArgs e)
+        {
+            new About().ShowDialog();
         }
     }
 }
