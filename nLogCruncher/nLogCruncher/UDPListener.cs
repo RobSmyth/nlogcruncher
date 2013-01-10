@@ -28,26 +28,25 @@ using System.Threading;
 
 namespace NoeticTools.nLogCruncher
 {
-    public class UDPListener
+    public class UdpListener
     {
-        private readonly TimeSpan timeReadingLimit = TimeSpan.FromSeconds(3);
-        private string output = "";
-        private bool stop;
-        private Thread thread;
+        private readonly TimeSpan _timeReadingLimit = TimeSpan.FromSeconds(3);
+        private bool _stop;
+        private Thread _thread;
 
         public void Start(IMessageQueue messageQueue)
         {
-            thread = new Thread(ThreadProc);
-            thread.Start(messageQueue);
+            _thread = new Thread(ThreadProc);
+            _thread.Start(messageQueue);
         }
 
         public void Stop()
         {
-            stop = true;
-            thread.Join(TimeSpan.FromSeconds(1));
-            if (thread.IsAlive)
+            _stop = true;
+            _thread.Join(TimeSpan.FromSeconds(1));
+            if (_thread.IsAlive)
             {
-                thread.Abort();
+                _thread.Abort();
             }
         }
 
@@ -60,11 +59,11 @@ namespace NoeticTools.nLogCruncher
 
             try
             {
-                while (!stop)
+                while (!_stop)
                 {
                     var timeReceiving = new Stopwatch();
                     timeReceiving.Start();
-                    while (receivingUdpClient.Available > 0 && timeReceiving.Elapsed < timeReadingLimit)
+                    while (receivingUdpClient.Available > 0 && timeReceiving.Elapsed < _timeReadingLimit)
                     {
                         var receiveBytes = receivingUdpClient.Receive(ref remoteIpEndPoint);
                         var message = Encoding.ASCII.GetString(receiveBytes);

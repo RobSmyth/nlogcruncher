@@ -27,16 +27,21 @@ namespace NoeticTools.nLogCruncher.UI.Commands
 {
     public class AddEventToSetCommand : ICommand
     {
-        private readonly ILogSets logSets;
+        private readonly ILogSets _logSets;
 
         public AddEventToSetCommand(ILogSets logSets)
         {
-            this.logSets = logSets;
+            this._logSets = logSets;
+
+            if (CanExecuteChanged != null)
+            {
+                // keep compiler happy
+            }
         }
 
         public void Execute(object parameter)
         {
-            var setSelectionDialog = new SetSelectionWindow(logSets);
+            var setSelectionDialog = new SetSelectionWindow(_logSets);
             if (setSelectionDialog.ShowDialog() == true && setSelectionDialog.DialogResult.HasValue)
             {
                 var logEvent = (LogEvent) parameter;

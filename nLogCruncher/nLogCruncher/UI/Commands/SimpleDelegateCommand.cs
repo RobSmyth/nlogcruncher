@@ -26,16 +26,21 @@ namespace NoeticTools.nLogCruncher.UI.Commands
 {
     public class SimpleDelegateCommand : ICommand
     {
-        private readonly Action<object> executeDelegate;
+        private readonly Action<object> _executeDelegate;
 
         public SimpleDelegateCommand(Action<object> executeDelegate)
         {
-            this.executeDelegate = executeDelegate;
+            this._executeDelegate = executeDelegate;
+
+            if (CanExecuteChanged != null)
+            {
+                // keep compiler happy
+            }
         }
 
         public void Execute(object parameter)
         {
-            executeDelegate(parameter);
+            _executeDelegate(parameter);
         }
 
         public bool CanExecute(object parameter)
