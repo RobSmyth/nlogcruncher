@@ -27,18 +27,23 @@ namespace NoeticTools.nLogCruncher.UI.Commands
 {
     public class HideEventsWithMessageCommand : ICommand
     {
-        private readonly IEventsFormatterData formatterData;
+        private readonly IEventsFormatterData _formatterData;
 
         public HideEventsWithMessageCommand(IEventsFormatterData formatterData)
         {
-            this.formatterData = formatterData;
+            this._formatterData = formatterData;
+
+            if (CanExecuteChanged != null)
+            {
+                // keep compiler happy
+            }
         }
 
         public ICommand Test { get; set; }
 
         public void Execute(object parameter)
         {
-            formatterData.HideMessages(((ILogEvent) parameter).Message);
+            _formatterData.HideMessages(((ILogEvent) parameter).Message);
         }
 
         public bool CanExecute(object parameter)

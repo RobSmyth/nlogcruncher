@@ -41,7 +41,7 @@ namespace NoeticTools.nLogCruncher.Domain
         private static readonly TimeSpan UpdatePeriod = TimeSpan.FromSeconds(0.3);
         private static MessageQueue _messageQueue;
         private static DispatcherTimer _tickTimer;
-        private static UDPListener _udpListener;
+        private static UdpListener _udpListener;
 
         static EventsLog()
         {
@@ -63,7 +63,7 @@ namespace NoeticTools.nLogCruncher.Domain
         {
             Contexts.Add(RootContext);
             _messageQueue = new MessageQueue();
-            _udpListener = new UDPListener();
+            _udpListener = new UdpListener();
             _udpListener.Start(_messageQueue);
 
             _tickTimer = new DispatcherTimer {Interval = UpdatePeriod};

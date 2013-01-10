@@ -31,6 +31,11 @@ namespace NoeticTools.nLogCruncher.UI.Commands
         public ShowContextDepthCommand(IEventsFormatterData data)
         {
             _data = data;
+
+            if (CanExecuteChanged != null)
+            {
+                // keep compiler happy
+            }
         }
 
         public void Execute(object parameter)

@@ -32,6 +32,11 @@ namespace NoeticTools.nLogCruncher.UI.Commands
         public HideEventsInContextCommand(IEventsFormatterData data)
         {
             _data = data;
+
+            if (CanExecuteChanged != null)
+            {
+                // keep compiler happy
+            }
         }
 
         public void Execute(object parameter)

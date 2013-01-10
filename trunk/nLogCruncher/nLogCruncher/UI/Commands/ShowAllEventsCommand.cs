@@ -26,16 +26,21 @@ namespace NoeticTools.nLogCruncher.UI.Commands
 {
     public class ShowAllEventsCommand : ICommand
     {
-        private readonly IEventsFormatterData data;
+        private readonly IEventsFormatterData _data;
 
         public ShowAllEventsCommand(IEventsFormatterData data)
         {
-            this.data = data;
+            this._data = data;
+
+            if (CanExecuteChanged != null)
+            {
+                // keep compiler happy
+            }
         }
 
         public void Execute(object parameter)
         {
-            data.ShowAllEvents();
+            _data.ShowAllEvents();
         }
 
         public bool CanExecute(object parameter)
