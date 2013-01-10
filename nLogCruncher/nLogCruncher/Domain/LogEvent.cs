@@ -28,11 +28,11 @@ namespace NoeticTools.nLogCruncher.Domain
 {
     public class LogEvent : ILogEvent
     {
-        private readonly string eventText;
+        private readonly string _eventText;
 
         public LogEvent(string eventText, IEventContext rootContext, ICollection<IEventLevel> levels)
         {
-            this.eventText = eventText;
+            this._eventText = eventText;
 
             string contextName;
             if (eventText.StartsWith("<log4j:event"))
@@ -86,7 +86,7 @@ namespace NoeticTools.nLogCruncher.Domain
         {
             var regex = new Regex(@"^(?<timeDate>.*)\|(?<context>.*)\|(?<level>.*)\|(?<message>.*)$",
                                   RegexOptions.Multiline);
-            var matches = regex.Matches(eventText);
+            var matches = regex.Matches(_eventText);
 
             string context;
             if (matches.Count == 1 && matches[0].Groups.Count > 4)
@@ -100,7 +100,7 @@ namespace NoeticTools.nLogCruncher.Domain
             {
                 Time = DateTime.MinValue; // "Unknown";
                 Level = "Unkown";
-                Message = eventText;
+                Message = _eventText;
                 context = "Unknown";
             }
 
